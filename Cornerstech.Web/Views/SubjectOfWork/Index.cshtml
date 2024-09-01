@@ -1,0 +1,99 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "İş Konuları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="Index" method="get">
+    <div class="form-row">
+        <div class="col-md-4 mb-2">
+            <div class="input-group">
+                <input name="term" class="form-control" placeholder="Partner, anlaşma, risk, konu..." />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-info btn-sm">Ara</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-2">
+            <select class="form-control" name="selectedCategory" onchange="this.form.submit();">
+                <option value=""></option>
+                <option value="Tümü">Tümü</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2 offset-md-3 mb-2">
+            <a href="@Url.Action("Create", "SubjectOfWork")" class="btn float-right btn-sm" style="background-color: #008170; color: white;">Ekle</a>
+        </div>
+    </div>
+</form>
+
+<br />
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Name" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Name" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">İsim</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Description" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Description" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Detay</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Category" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Partner" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Kategori</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Agreement" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Subject" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Anlaşmalar</a>
+                </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="10" class="text-center">Gösterilecek veri yok.</td>
+                </tr>
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td rowspan="1">@item.Name.ToString()</td>
+                    <td rowspan="1">@(!string.IsNullOrEmpty(item.Description) ? item.Description : "-")</td>
+                    <td rowspan="1">@(!string.IsNullOrEmpty(item.Category) ? item.Category : "-")</td>
+
+                    @if (item.AgreementSubjects != null && item.AgreementSubjects.Count > 0)
+                    {
+                        <td>
+                            @foreach (var agreementSubject in item.AgreementSubjects)
+                            {
+                                @agreementSubject.Agreement.Name
+                                <br />
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+                    <td>
+                        <a href="@Url.Action("Edit", "SubjectOfWork", new { id = item.Id })" class="btn btn-success btn-sm" style="background-color: #FFC94A; border-color: #FFC94A;">Düzenle</a>
+                    </td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Bu iş konusunu silmek istediğinize emin misiniz?');">
+                            <button type="submit" class="btn btn-danger btn-sm" style="background-color: #C40C0C; border-color: #C40C0C;">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>

@@ -1,0 +1,58 @@
+﻿@model Cornerstech.Web.Models.SubjectOfWork.SubjectOfWorkCreateViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Yeni Konu Ekle";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>İş Konuları</title>
+</head>
+<body>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Name, "Konu", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Description, "Detay", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Category, "Kategori", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                @Html.Label("SelectedAgreements", "Anlaşma Listesi", new { @class = "control-label" })
+                @Html.ListBoxFor(model => model.SelectedAgreements, ViewData["Agreements"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedAgreements, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 text-left">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <a href="@Url.Action("Index", "SubjectOfWork")" class="btn btn-secondary">Listeye Dön</a>
+            </div>
+        </div>
+    }
+</body>
+</html>

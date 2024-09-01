@@ -1,0 +1,76 @@
+﻿@model Cornerstech.Web.Models.Agreement.AgreementCreateViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Yeni Anlaşma Ekle";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Anlaşmalar</title>
+</head>
+<body>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Name, "Anlaşma Adı", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Description, "Detay", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.StartDate, "Başlangıç Tarihi", new { @class = "control-label" })
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.EndDate, "Bitiş Tarihi", new { @class = "control-label" })
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                @Html.Label("SelectedPartners", "Ortak Listesi", new { @class = "control-label" })
+                @Html.ListBoxFor(model => model.SelectedPartners, ViewData["Partners"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedPartners, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("SelectedRisks", "Risk Listesi", new { @class = "control-label" })
+                @Html.ListBoxFor(model => model.SelectedRisks, ViewData["Risks"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedRisks, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("SelectedSubjects", "Konu Listesi", new { @class = "control-label" })
+                @Html.ListBoxFor(model => model.SelectedSubjects, ViewData["Subjects"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedSubjects, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 text-left">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <a href="@Url.Action("Index", "Agreement")" class="btn btn-secondary">Listeye Dön</a>
+            </div>
+        </div>
+    }
+</body>
+</html>

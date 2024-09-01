@@ -1,0 +1,72 @@
+﻿@model Cornerstech.Web.Models.Agreement.AgreementDetailsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Anlaşmayı Düzenle";
+
+}
+
+<form asp-action="Edit">
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="Name">Anlaşma İsmi</label>
+            <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" />
+        </div>
+        <div class="form-group col-md-8">
+            <label for="Description">Detay Bilgi</label>
+            <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="StartDate">Başlangıç Tarihi</label>
+            <input type="date" class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate != DateTime.MinValue ? Model.StartDate.Value.ToString("yyyy-MM-dd") : string.Empty)" />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="EndDate">Bitiş Tarihi</label>
+            <input type="date" class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate != DateTime.MinValue ? Model.EndDate.Value.ToString("yyyy-MM-dd") : string.Empty)" />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="Status">Durum</label>
+            <select class="form-control" asp-for="Status" asp-items="ViewBag.StatusOptions"></select>
+        </div>
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-4">
+            <label for="Partners">Partnerler</label>
+            <select id="Partners" name="SelectedPartners" multiple="multiple" class="form-control">
+                @foreach (var partner in Model.PartnerOptions)
+                {
+                    <option value="@partner.Value" selected="@(partner.Selected ? "selected" : null)">@partner.Text</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="Risks">Riskler</label>
+            <select id="Risks" name="SelectedRisks" multiple="multiple" class="form-control">
+                @foreach (var risk in Model.RiskOptions)
+                {
+                    <option value="@risk.Value" selected="@(risk.Selected ? "selected" : null)">@risk.Text</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="Subjects">Konular</label>
+            <select id="Subjects" name="SelectedSubjects" multiple="multiple" class="form-control">
+                @foreach (var subject in Model.SubjectOptions)
+                {
+                    <option value="@subject.Value" selected="@(subject.Selected ? "selected" : null)">@subject.Text</option>
+                }
+            </select>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

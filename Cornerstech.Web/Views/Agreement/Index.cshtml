@@ -1,0 +1,178 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Anlaşmalar";
+}
+
+<form asp-action="Index" method="get">
+    <div class="form-row">
+        <div class="col-md-4 mb-2">
+            <div class="input-group">
+                <input name="term" class="form-control" placeholder="Partner, anlaşma, risk, konu..." />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-info btn-sm">Ara</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-2">
+            <select class="form-control" name="selectedStatus" onchange="this.form.submit();">
+                <option value=""></option>
+                <option value="Tümü">Tümü</option>
+                <option value="Tamamlandı">Tamamlandı</option>
+                <option value="Görüşülüyor">Görüşülüyor</option>
+                <option value="İmzalandı">İmzalandı</option>
+                <option value="İptal Edildi">İptal Edildi</option>
+                <option value="Beklemede">Beklemede</option>
+            </select>
+        </div>
+        <div class="col-md-2 offset-md-3 mb-2">
+            <a href="@Url.Action("Create", "Agreement")" class="btn float-right btn-sm" style="background-color: #008170; color: white;">Ekle</a>
+        </div>
+    </div>
+</form>
+
+<br />
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="No" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "No" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">No.</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Name" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Name" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">İsim</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Description" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Description" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Detay</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Partner" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Partner" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Partner</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="StartDate" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "StartDate" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Başlangıç Tarihi</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="EndDate" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "EndDate" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Bitiş Tarihi</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Status" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Status" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Durum</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Risk" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Risk" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Riskler</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Subject" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Subject" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Konular</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="CreatedDate" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "CreatedDate" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Anlaşma Tarihi</a>
+                </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="10" class="text-center">Gösterilecek veri yok.</td>
+                </tr>
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td rowspan="1">@item.Agreement.Id.ToString()</td>
+                    <td rowspan="1">@(!string.IsNullOrEmpty(item.Agreement.Name) ? item.Agreement.Name : "-")</td>
+                    <td rowspan="1">@(!string.IsNullOrEmpty(item.Agreement.Description) ? item.Agreement.Description : "-")</td>
+
+                    @if (item.Partners != null && item.Partners.Count > 1)
+                    {
+                        <td>
+                            @foreach (var partner in item.Partners)
+                            {
+                                @partner
+                                <br />
+                            }
+                        </td>
+                    }
+                    else if (item.Partners != null && item.Partners.Count == 1)
+                    {
+                        <td>@(!string.IsNullOrEmpty(item.Partners[0]) ? item.Partners[0] : "-")</td>
+                    }
+                    else
+                    {
+                        <td>-</td>
+                    }
+
+                    <td>
+                        @(item.Agreement.StartDate?.ToString("dd.MM.yyyy") ?? "-")
+                    </td>
+                    <td>
+                        @(item.Agreement.EndDate?.ToString("dd.MM.yyyy") ?? "-")
+                    </td>
+                    <td>@(!string.IsNullOrEmpty(item.Agreement.Status) ? item.Agreement.Status : "-")</td>
+                    <td>
+                        @if (item.Risks != null && item.Risks.Count > 1)
+
+                        {
+                            @foreach (var risk in item.Risks)
+                            {
+                                @risk
+                                <br />
+                            }
+                        }
+
+                        else if (item.Risks != null && item.Risks.Count == 1)
+
+                        {
+                            @(!string.IsNullOrEmpty(item.Risks[0]) ? item.Risks[0] : "-")
+                        }
+
+                        else
+
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Subjects != null && item.Subjects.Count > 1)
+
+                        {
+                            @foreach (var subject in item.Subjects)
+                            {
+                                @subject
+                                <br />
+                            }
+                        }
+
+                        else if (item.Subjects != null && item.Subjects.Count == 1)
+
+                        {
+                            @(!string.IsNullOrEmpty(item.Subjects[0]) ? item.Subjects[0] : "-")
+                        }
+
+                        else
+
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+
+                    <td>@(item.Agreement.CreatedDate.ToString("dd.MM.yyyy"))</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Agreement", new { id = item.Agreement.Id })" class="btn btn-success btn-sm" style="background-color: #FFC94A; border-color: #FFC94A;">Düzenle</a>
+                    </td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@item.Agreement.Id" method="post" onsubmit="return confirm('Bu anlaşmayı silmek istediğinize emin misiniz?');">
+                            <button type="submit" class="btn btn-danger btn-sm" style="background-color: #C40C0C; border-color: #C40C0C;">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
