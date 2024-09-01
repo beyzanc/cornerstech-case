@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cornerstech.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82856c501ee0dedad08a288371f11bfb5ce598c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cornerstech.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cornerstech.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

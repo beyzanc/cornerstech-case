@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cornerstech.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240901093413_initial-migration")]
+    [Migration("20240901192820_initial-migration")]
     partial class initialmigration
     {
         /// <inheritdoc />
@@ -213,15 +213,21 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Frequence")
+                        .HasColumnType("float");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
+                    b.Property<double>("Level")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Possibility")
+                        .HasColumnType("float");
 
                     b.Property<int>("RiskCategoryId")
                         .HasColumnType("int");

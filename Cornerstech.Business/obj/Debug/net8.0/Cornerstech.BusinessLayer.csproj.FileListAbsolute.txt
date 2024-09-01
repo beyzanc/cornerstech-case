@@ -15,3 +15,4 @@ C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Co
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\refint\Cornerstech.BusinessLayer.dll
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.pdb
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\ref\Cornerstech.BusinessLayer.dll
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.sourcelink.json

@@ -258,3 +258,4 @@ C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Web\obj\Debug\net8.0\refint\
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Web\obj\Debug\net8.0\Cornerstech.Web.pdb
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Web\obj\Debug\net8.0\Cornerstech.Web.genruntimeconfig.cache
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Web\obj\Debug\net8.0\ref\Cornerstech.Web.dll
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Web\obj\Debug\net8.0\Cornerstech.Web.sourcelink.json

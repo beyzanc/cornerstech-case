@@ -1,0 +1,101 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Riskler";
+
+    Func<double, string> GetPossibilityDescription = (possibility) =>
+    {
+        switch (possibility)
+        {
+            case 10: return "Beklenir, kesin";
+            case 6: return "Yüksek / oldukça mümkün";
+            case 3: return "Olası";
+            case 1: return "Mümkün fakat düşük";
+            case 0.5: return "Beklenmez fakat mümkün";
+            case 0.2: return "Beklenmez";
+            default: return "Bilinmiyor";
+        }
+    };
+
+    Func<double, string> GetFrequenceDescription = (frequence) =>
+    {
+        switch (frequence)
+        {
+            case 10: return "Hemen hemen sürekli";
+            case 6: return "Sık";
+            case 3: return "Ara sıra";
+            case 1: return "Sık değil";
+            case 0.5: return "Seyrek";
+            case 0.2: return "Çok seyrek";
+            default: return "Bilinmiyor";
+        }
+    };
+
+    Func<double, string> GetLevelDescription = (level) =>
+    {
+        switch (level)
+        {
+            case 100: return "Birden fazla ölümlü kaza";
+            case 40: return "Öldürücü kaza";
+            case 15: return "Kalıcı hasar/yaralanma, iş kaybı";
+            case 7: return "Önemli hasar/yaralanma";
+            case 3: return "Küçük hasar/yaralanma";
+            case 1: return "Ucuz atlatma";
+            default: return "Bilinmiyor";
+        }
+    };
+}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Name" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Name" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">İsim</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Level" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Level" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Seviye</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Frequence" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Frequence" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Gerçekleşme Sıklığı</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="Possibility" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Possibility" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Olasılık</a>
+                </th>
+                <th>
+                    Risk Skoru
+                </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="10" class="text-center">Gösterilecek veri yok.</td>
+                </tr>
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@GetLevelDescription(item.Level)</td>
+                    <td>@GetFrequenceDescription(item.Frequence)</td>
+                    <td>@GetPossibilityDescription(item.Possibility)</td>
+                    <td>@((item.Level * item.Frequence * item.Possibility).ToString("F2"))</td>
+
+                    <td>
+                        <a href="@Url.Action("Edit", "Risk", new { id = item.Id })" class="btn btn-success btn-sm" style="background-color: #FFC94A; border-color: #FFC94A;">Düzenle</a>
+                    </td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Bu risk silmek istediğinize emin misiniz?');">
+                            <button type="submit" class="btn btn-danger btn-sm" style="background-color: #C40C0C; border-color: #C40C0C;">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

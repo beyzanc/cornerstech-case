@@ -10,3 +10,4 @@ C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Corn
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\refint\Cornerstech.EntityLayer.dll
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.pdb
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\ref\Cornerstech.EntityLayer.dll
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.sourcelink.json

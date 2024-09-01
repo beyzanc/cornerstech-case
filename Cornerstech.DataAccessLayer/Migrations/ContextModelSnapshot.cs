@@ -210,15 +210,21 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Frequence")
+                        .HasColumnType("float");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
+                    b.Property<double>("Level")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Possibility")
+                        .HasColumnType("float");
 
                     b.Property<int>("RiskCategoryId")
                         .HasColumnType("int");
