@@ -10,7 +10,6 @@ public class Context : DbContext
 
     public DbSet<Agreement> Agreements { get; set; }
     public DbSet<Partner> Partners { get; set; }
-    public DbSet<RiskCategory> RiskCategories { get; set; }
     public DbSet<Risk> Risks { get; set; }
     public DbSet<SubjectOfWork> SubjectOfWorks { get; set; }
     public DbSet<User> Users { get; set; }
@@ -18,6 +17,7 @@ public class Context : DbContext
     public DbSet<AgreementRisk> AgreementRisks { get; set; } 
     public DbSet<AgreementSubject> AgreementSubjects { get; set; } 
     public DbSet<SubjectRisk> SubjectRisks { get; set; } 
+    public DbSet<RiskManagement> RiskManagements { get; set; } 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

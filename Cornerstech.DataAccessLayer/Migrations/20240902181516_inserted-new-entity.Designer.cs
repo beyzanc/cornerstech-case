@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cornerstech.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240902181516_inserted-new-entity")]
+    partial class insertednewentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,35 +210,62 @@ namespace Cornerstech.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("Frequence")
+                    b.Property<double>("Frequence")
                         .HasColumnType("float");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<double?>("Level")
+                    b.Property<double>("Level")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Possibility")
+                    b.Property<double>("Possibility")
                         .HasColumnType("float");
+
+                    b.Property<int>("RiskCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RiskCategoryId");
+
                     b.ToTable("Risks");
+                });
+
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.RiskCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RiskCategories");
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.RiskManagement", b =>
@@ -424,6 +454,17 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Risk", b =>
+                {
+                    b.HasOne("Cornerstech.EntityLayer.Entities.RiskCategory", "Category")
+                        .WithMany("Risks")
+                        .HasForeignKey("RiskCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.SubjectRisk", b =>
                 {
                     b.HasOne("Cornerstech.EntityLayer.Entities.Risk", "Risk")
@@ -460,6 +501,11 @@ namespace Cornerstech.DataAccessLayer.Migrations
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Risk", b =>
                 {
                     b.Navigation("AgreementRisks");
+                });
+
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.RiskCategory", b =>
+                {
+                    b.Navigation("Risks");
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.SubjectOfWork", b =>

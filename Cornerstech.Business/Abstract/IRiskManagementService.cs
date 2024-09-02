@@ -2,7 +2,7 @@
 
 namespace Cornerstech.BusinessLayer.Abstract
 {
-    public interface IAgreementRiskService : IGenericService<AgreementRisk>
+    public interface IRiskManagementService : IGenericService<RiskManagement>
     {
     }
 }

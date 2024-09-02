@@ -91,5 +91,6 @@ namespace Cornerstech.BusinessLayer.Concrete
 
             return industryCounts;
         }
+
     }
 }

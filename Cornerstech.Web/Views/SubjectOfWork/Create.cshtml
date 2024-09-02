@@ -42,7 +42,7 @@
         <div class="form-group row">
             <div class="col-md-4">
                 @Html.Label("SelectedAgreements", "Anlaşma Listesi", new { @class = "control-label" })
-                @Html.ListBoxFor(model => model.SelectedAgreements, ViewData["Agreements"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ListBoxFor(model => model.SelectedAgreements, (IEnumerable<SelectListItem>)ViewData["Agreements"], new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SelectedAgreements, "", new { @class = "text-danger" })
             </div>
         </div>

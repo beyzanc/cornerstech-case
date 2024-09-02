@@ -20,10 +20,10 @@ builder.Services.AddScoped<IAgreementRiskService, AgreementRiskManager>();
 builder.Services.AddScoped<IAgreementSubjectService, AgreementSubjectManager>();
 builder.Services.AddScoped<IPartnerService, PartnerManager>();
 builder.Services.AddScoped<IRiskService, RiskManager>();
-builder.Services.AddScoped<IRiskCategoryService, RiskCategoryManager>();
 builder.Services.AddScoped<ISubjectOfWorkService, SubjectOfWorkManager>();
 builder.Services.AddScoped<ISubjectRiskService, SubjectRiskManager>();
 builder.Services.AddScoped<IUserService, UserManager>();
+builder.Services.AddScoped<IRiskManagementService, RiskManagementManager>();
 
 
 builder.Services.AddScoped<IAgreementDal, EFAgreementDal>();
@@ -32,10 +32,10 @@ builder.Services.AddScoped<IAgreementRiskDal, EFAgreementRiskDal>();
 builder.Services.AddScoped<IAgreementSubjectDal, EFAgreementSubjectDal>();
 builder.Services.AddScoped<IPartnerDal, EFPartnerDal>();
 builder.Services.AddScoped<IRiskDal, EFRiskDal>();
-builder.Services.AddScoped<IRiskCategoryDal, EFRiskCategoryDal>();
 builder.Services.AddScoped<ISubjectOfWorkDal, EFSubjectOfWorkDal>();
 builder.Services.AddScoped<ISubjectRiskDal, EFSubjectRiskDal>();
 builder.Services.AddScoped<IUserDal, EFUserDal>();
+builder.Services.AddScoped<IRiskManagementDal, EFRiskManagementDal>();
 
 //builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(MappingProfile).Assembly);
 

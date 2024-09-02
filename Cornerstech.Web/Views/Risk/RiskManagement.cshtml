@@ -1,0 +1,69 @@
+﻿@model Cornerstech.Web.Models.Risk.RiskManagementViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Risk Değer Yönetimi";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h4>Seviye - Değer</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tanım</th>
+                    <th>Değer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kvp in Model.LevelDescriptions)
+                {
+                    <tr>
+                        <td>@kvp.Value</td>
+                        <td>@kvp.Key</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h4>Frekans - Değer</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tanım</th>
+                    <th>Değer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kvp in Model.FrequenceDescriptions)
+                {
+                    <tr>
+                        <td>@kvp.Value</td>
+                        <td>@kvp.Key</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h4>Olasılık - Değer</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tanım</th>
+                    <th>Değer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kvp in Model.PossibilityDescriptions)
+                {
+                    <tr>
+                        <td>@kvp.Value</td>
+                        <td>@kvp.Key</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

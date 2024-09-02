@@ -1,0 +1,62 @@
+﻿@model Cornerstech.Web.Models.Risk.RiskCreateViewModel
+
+@{
+    ViewBag.Title = "Risk Oluştur";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Risk Oluştur</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category" class="control-label">Kategori</label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedLevel" class="control-label">Seviye</label>
+        <select asp-for="SelectedLevel" class="form-control">
+            <option value="">Seçiniz</option>
+            @foreach (var level in Model.LevelOptions)
+            {
+                <option value="@level.Key.ToString(System.Globalization.CultureInfo.InvariantCulture)">@level.Value</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedFrequence" class="control-label">Frekans</label>
+        <select asp-for="SelectedFrequence" class="form-control">
+            <option value="">Seçiniz</option>
+            @foreach (var frequence in Model.FrequenceOptions)
+            {
+                <option value="@frequence.Key.ToString(System.Globalization.CultureInfo.InvariantCulture)">@frequence.Value</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedPossibility" class="control-label">Olasılık</label>
+        <select asp-for="SelectedPossibility" class="form-control">
+            <option value="">Seçiniz</option>
+            @foreach (var possibility in Model.PossibilityOptions)
+            {
+                <option value="@possibility.Key.ToString(System.Globalization.CultureInfo.InvariantCulture)">@possibility.Value</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Oluştur" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Geri Dön</a>
+</div>

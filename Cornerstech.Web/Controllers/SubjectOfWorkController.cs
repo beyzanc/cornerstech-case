@@ -29,7 +29,7 @@ namespace Cornerstech.Web.Controllers
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
             selectedCategory = string.IsNullOrEmpty(selectedCategory) || selectedCategory == "Tümü" ? "" : selectedCategory.ToLower();
             ViewBag.CurrentSortOrder = sortOrder;
-            ViewBag.CurrentSortDirection = sortDirection == "asc" ? "desc" : "asc"; // Toggle the sort direction
+            ViewBag.CurrentSortDirection = sortDirection == "asc" ? "desc" : "asc"; 
 
 
             var categories = _subjectOfWokService.TGetList()
@@ -187,8 +187,11 @@ namespace Cornerstech.Web.Controllers
                     Text = p.Name
                 }).ToList();
 
+            ViewData["SelectedAgreements"] = new List<SelectListItem>();
+
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -219,17 +222,15 @@ namespace Cornerstech.Web.Controllers
                     }
                 }
 
-
                 return RedirectToAction("Index");
             }
 
-            ViewData["Partners"] = _agreementService.TGetList()
+            ViewData["Agreements"] = _agreementService.TGetList()
                 .Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
                     Text = p.Name
                 }).ToList();
-
 
             return PartialView("Create", model);
         }
