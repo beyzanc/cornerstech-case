@@ -36,12 +36,15 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="~/Home/Index">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Yönetim Paneli</span>
-                </a>
-            </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Home/Index">
+                        <span>Yönetim Paneli</span>
+                    </a>
+                </li>                
+            }
+
             <!-- Divider -->
             <hr class="sidebar-divider">
                 <!-- Heading -->
@@ -65,19 +68,22 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu (Ortaklar) -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePartners"
-                   aria-expanded="true" aria-controls="collapsePartners">
-                    <i class="fas fa-fw fa-handshake"></i>
-                    <span>Ortaklar</span>
-                </a>
-                <div id="collapsePartners" class="collapse" aria-labelledby="headingPartners" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("Index", "Partner")">Ortaklar</a>
-                        <a class="collapse-item" href="@Url.Action("Create", "Partner")">Ortak Ekle</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePartners"
+                       aria-expanded="true" aria-controls="collapsePartners">
+                        <i class="fas fa-fw fa-handshake"></i>
+                        <span>Ortaklar</span>
+                    </a>
+                    <div id="collapsePartners" class="collapse" aria-labelledby="headingPartners" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="@Url.Action("Index", "Partner")">Ortaklar</a>
+                            <a class="collapse-item" href="@Url.Action("Create", "Partner")">Ortak Ekle</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            }
 
             <!-- Nav Item - Pages Collapse Menu (İş Konuları) -->
             <li class="nav-item">
@@ -108,7 +114,7 @@
                     </div>
                 </div>
             </li>
-
+@* 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
@@ -116,22 +122,6 @@
                 <div class="sidebar-heading">
                     Ekler
                 </div>
-
-            <!-- Nav Item - Pages Collapse Menu (Mali Tablolar) -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFinancials"
-                   aria-expanded="true" aria-controls="collapseFinancials">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Mali Tablolar</span>
-                </a>
-                <div id="collapseFinancials" class="collapse" aria-labelledby="headingFinancials" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Tablolar</a>
-                        <a class="collapse-item" href="register.html">Grafikler</a>
-                        <a class="collapse-item" href="register.html">Öngörüler</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -147,7 +137,7 @@
                     </div>
                 </div>
             </li>
-
+ *@
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
@@ -206,23 +196,23 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.Name</span>
                                     <img class="img-profile rounded-circle"
-                                     src="/Theme/img/undraw_profile.svg">
+                                     src="/Theme/img/undraw_rocket.svg">
                                 </a>
                                 <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profil
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Çıkış Yap
-                                    </a>
-                                </div>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit();">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Çıkış Yap
+                                </a>
+                                <form id="logoutForm" action="@Url.Action("Logout", "Home")" method="post" style="display:none;">
+                                    @Html.AntiForgeryToken()
+                                </form>
+                            </div>
+
                             </li>
 
                         </ul>

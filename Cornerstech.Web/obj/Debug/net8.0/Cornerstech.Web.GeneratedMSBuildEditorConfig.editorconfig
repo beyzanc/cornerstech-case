@@ -1,0 +1,111 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Cornerstech.Web
+build_property.RootNamespace = Cornerstech.Web
+build_property.ProjectDir = C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Agreement/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdyZWVtZW50XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Agreement/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdyZWVtZW50XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Agreement/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdyZWVtZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Partner/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydG5lclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Partner/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydG5lclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Partner/GetAgreementsByPartner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydG5lclxHZXRBZ3JlZW1lbnRzQnlQYXJ0bmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Partner/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydG5lclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Risk/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmlza1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Risk/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmlza1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Risk/RiskManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmlza1xSaXNrTWFuYWdlbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Shared/LoginLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExvZ2luTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/SubjectOfWork/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViamVjdE9mV29ya1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/SubjectOfWork/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViamVjdE9mV29ya1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/SubjectOfWork/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViamVjdE9mV29ya1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/beyza/source/repos/Cornerstech/Cornerstech.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-vix3qnx8kh

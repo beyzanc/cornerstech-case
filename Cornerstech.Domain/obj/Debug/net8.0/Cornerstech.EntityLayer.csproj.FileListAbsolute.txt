@@ -1,0 +1,13 @@
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\bin\Debug\net8.0\Cornerstech.EntityLayer.deps.json
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\bin\Debug\net8.0\Cornerstech.EntityLayer.dll
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\bin\Debug\net8.0\Cornerstech.EntityLayer.pdb
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.csproj.AssemblyReference.cache
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.AssemblyInfoInputs.cache
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.AssemblyInfo.cs
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.sourcelink.json
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.dll
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\refint\Cornerstech.EntityLayer.dll
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\Cornerstech.EntityLayer.pdb
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Domain\obj\Debug\net8.0\ref\Cornerstech.EntityLayer.dll

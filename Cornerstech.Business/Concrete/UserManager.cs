@@ -49,5 +49,27 @@ namespace Cornerstech.BusinessLayer.Concrete
             _UserDal.Update(t);
             _uowDal.Save();
         }
+
+        public User GetByName(string username)
+        {
+            return _UserDal.GetQueryableList().FirstOrDefault(x => x.UserName == username);
+        }
+
+        public bool CheckPasswordByName(string username, string password)
+        {
+            var user = GetByName(username);
+            if (user == null)
+            {
+                return false;
+            }
+
+            return user.Password == password;
+        }
+
+        public string GetUserRole(string username)
+        {
+            var user = GetByName(username);
+            return user?.Role;
+        }
     }
 }
