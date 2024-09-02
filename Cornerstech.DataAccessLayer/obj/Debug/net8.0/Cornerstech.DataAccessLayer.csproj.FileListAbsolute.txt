@@ -9,10 +9,10 @@ C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\ne
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.AssemblyInfoInputs.cache
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.AssemblyInfo.cs
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.sourcelink.json
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerst.63858491.Up2Date
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.dll
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\refint\Cornerstech.DataAccessLayer.dll
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.pdb
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.genruntimeconfig.cache
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\ref\Cornerstech.DataAccessLayer.dll
-C:\Users\beyza\source\repos\Cornerstech\Cornerstech.DataAccessLayer\obj\Debug\net8.0\Cornerstech.DataAccessLayer.sourcelink.json

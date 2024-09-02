@@ -1,3 +1,176 @@
 ﻿@{
     ViewBag.Title = "Yönetim Paneli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var agreementStatusCounts = ViewBag.AgreementStatusCounts as Dictionary<string, int>;
+    var monthlyAgreementCounts = ViewBag.MonthlyAgreementCounts as List<int>;
 }
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    #chartWrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .chartContainer {
+        flex: 1;
+        margin: 0 10px; 
+    }
+
+        .chartContainer canvas {
+            width: 100%;
+            height: 300px;
+        }
+</style>
+
+<div id="chartWrapper">
+    <div class="chartContainer">
+        <canvas id="myDoughnutChart"></canvas>
+    </div>
+    <div class="chartContainer">
+        <canvas id="myLineChart"></canvas>
+    </div>
+    <div class="chartContainer">
+        <canvas id="myBarChart"></canvas>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+    var agreementStatusCounts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(agreementStatusCounts));
+
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: Object.keys(agreementStatusCounts),
+            datasets: [{
+                label: 'Durumlarına Göre Anlaşma Sayıları',
+                data: Object.values(agreementStatusCounts),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Durumlarına Göre Anlaşma Sayıları'
+                }
+            }
+        }
+    });
+
+    var lineCtx = document.getElementById('myLineChart').getContext('2d');
+    var monthlyAgreementCounts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(monthlyAgreementCounts));
+
+    var myLineChart = new Chart(lineCtx, {
+        type: 'line',
+        data: {
+            labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+            datasets: [{
+                label: 'Ay Bazında Anlaşma Sayıları',
+                data: monthlyAgreementCounts,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Ay Bazında Anlaşma Sayıları'
+                }
+            },
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Aylar'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Anlaşma Sayısı'
+                    }
+                }
+            }
+        }
+    });
+    var barCtx = document.getElementById('myBarChart').getContext('2d');
+    var industryAgreementCounts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.IndustryAgreementCounts));
+
+    var myBarChart = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(industryAgreementCounts),
+            datasets: [{
+                label: 'Endüstrilere Göre Anlaşma Sayıları',
+                data: Object.values(industryAgreementCounts),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Endüstrilere Göre Anlaşma Sayıları'
+                }
+            },
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Endüstriler'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Anlaşma Sayısı'
+                    }
+                }
+            }
+        }
+    });
+</script>

@@ -10,9 +10,9 @@ C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Co
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.AssemblyInfoInputs.cache
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.AssemblyInfo.cs
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.sourcelink.json
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerst.486C7917.Up2Date
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.dll
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\refint\Cornerstech.BusinessLayer.dll
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.pdb
 C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\ref\Cornerstech.BusinessLayer.dll
-C:\Users\beyza\source\repos\Cornerstech\Cornerstech.Business\obj\Debug\net8.0\Cornerstech.BusinessLayer.sourcelink.json
