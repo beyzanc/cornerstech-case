@@ -16,8 +16,16 @@ namespace Cornerstech.Web.Controllers
         private readonly IAgreementSubjectService _agreementSubjectService;
         private readonly IRiskService _riskService;
         private readonly ISubjectOfWorkService _subjectService;
+        private readonly INotificationService _notificationService;
+        private readonly INotificationApplicationUserService _notificationApplicationUserService;
+        private readonly IUserService _userService;
 
-        public AgreementController(IAgreementService agreementService, IPartnerService partnerService, IAgreementPartnerService agreementPartnerService, IRiskService riskService, IAgreementRiskService agreementRiskService, IAgreementSubjectService agreementSubjectService, ISubjectOfWorkService subjectService)
+
+        public AgreementController(IAgreementService agreementService, IPartnerService partnerService,
+                                    IAgreementPartnerService agreementPartnerService, IRiskService riskService, 
+                                        IAgreementRiskService agreementRiskService, IAgreementSubjectService agreementSubjectService, 
+                                            ISubjectOfWorkService subjectService, INotificationService notificationService, 
+                                                INotificationApplicationUserService notificationApplicationUserService, IUserService userService)
         {
             _agreementService = agreementService;
             _partnerService = partnerService;
@@ -26,9 +34,12 @@ namespace Cornerstech.Web.Controllers
             _agreementRiskService = agreementRiskService;
             _agreementSubjectService = agreementSubjectService;
             _subjectService = subjectService;
+            _notificationService = notificationService;
+            _notificationApplicationUserService = notificationApplicationUserService;
+            _userService = userService;
         }
 
-        // GET: AllAgreement
+        // GET: AllAgreements
         public IActionResult Index(string term = "", string sortOrder = "Name", string sortDirection = "asc", string selectedStatus = "")
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
@@ -75,18 +86,7 @@ namespace Cornerstech.Web.Controllers
 
             return View(agreementPartners);
         }
-
-        [HttpGet]
-        public JsonResult Autocomplete(string term)
-        {
-            var agreements = _agreementService.TGetList()
-                .Where(a => a.Name.ToLower().Contains(term.ToLower()))
-                .Select(a => new { label = a.Name, value = a.Id })
-                .ToList();
-
-            return Json(agreements);
-        }
-
+                        
         public IActionResult Create()
         {
             ViewData["Partners"] = _partnerService.TGetList()
@@ -113,10 +113,9 @@ namespace Cornerstech.Web.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(AgreementCreateViewModel model)
+        public async Task<IActionResult> Create(AgreementCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -142,6 +141,22 @@ namespace Cornerstech.Web.Controllers
                             PartnerId = partnerId
                         };
                         _agreementPartnerService.TInsert(agreementPartner);
+
+                        var notification = new Notification
+                        {
+                            Text = "Yeni bir anlaşma oluşturuldu: " + agreement.Name
+                        };
+
+                        _notificationService.TInsert(notification);
+                        var notificationId = notification.Id;
+
+                        var notificationUser = new NotificationApplicationUser
+                        {
+                            ApplicationUserId = _userService.GetUserIdByPartnerId(partnerId) ?? 0,
+                            NotificationId = notificationId
+                        };
+
+                        _notificationApplicationUserService.TInsert(notificationUser);
                     }
                 }
 
@@ -155,6 +170,8 @@ namespace Cornerstech.Web.Controllers
                             RiskId = riskId
                         };
                         _agreementRiskService.TInsert(agreementRisk);
+
+                        var risk = _riskService.TGetByID(riskId);
                     }
                 }
 
@@ -171,7 +188,39 @@ namespace Cornerstech.Web.Controllers
                     }
                 }
 
-                return RedirectToAction("Index");
+                if (model.SelectedRisks != null && model.SelectedRisks.Any() && model.SelectedPartners != null && model.SelectedPartners.Any())
+                {
+                    foreach (var riskId in model.SelectedRisks)
+                    {
+                        foreach (var partner in model.SelectedPartners)
+                        {
+                            var risk = _riskService.TGetByID(riskId);
+
+                            if (risk != null)
+                            {
+                                double riskValue = _riskService.GetRiskValueByRiskName(risk.Name);
+
+                                var notification = new Notification
+                                {
+                                    Text = agreement.Name + " anlaşması için risk skoru " + riskValue.ToString() + " olarak hesaplanmıştır. (" + risk.Name + ")"
+                                };
+
+                                _notificationService.TInsert(notification);
+                                var notificationId = notification.Id;
+
+                                var notificationUser = new NotificationApplicationUser
+                                {
+                                    ApplicationUserId = _userService.GetUserIdByPartnerId(partner) ?? 0,
+                                    NotificationId = notificationId
+                                };
+
+                                _notificationApplicationUserService.TInsert(notificationUser);
+                            }
+                        }
+                    }
+
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewData["Partners"] = _partnerService.TGetList()

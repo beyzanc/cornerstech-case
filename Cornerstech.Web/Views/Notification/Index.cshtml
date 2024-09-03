@@ -1,0 +1,58 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Mesajlar";
+}
+
+<form asp-action="Index" method="get">
+    <div class="form-row">
+        <div class="col-md-4 mb-6">
+            <div class="input-group">
+                <input name="term" class="form-control" placeholder="Risk..." />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-info btn-sm">Ara</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 offset-md-4 text-right">
+            <a href="@Url.Action("Create", "Risk")" class="btn btn-sm" style="background-color: #008170; color: white;">Ekle</a>
+        </div>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mesaj</th>
+                <th>Zaman</th>
+                <th>Kimden</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="10" class="text-center">Gösterilecek veri yok.</td>
+                </tr>
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Notification.Notification.Text</td>
+                    <td>@item.Notification.CreatedDate</td>
+                    <td>Admin</td>
+                    <td>
+                        <form asp-action="MarkAsRead" asp-route-id="@item.Notification.Id" method="post">
+                            <button type="submit" class="btn btn-success btn-sm">Okundu Olarak İşaretle</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

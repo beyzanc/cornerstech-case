@@ -4,6 +4,7 @@ namespace Cornerstech.Web.Models.SubjectOfWork
 {
     public class SubjectOfWorkCreateViewModel
     {
+
         [Required(ErrorMessage = "Konu giriniz.")]
         public required string Name { get; set; }
 

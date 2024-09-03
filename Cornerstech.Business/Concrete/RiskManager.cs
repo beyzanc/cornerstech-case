@@ -2,11 +2,6 @@
 using Cornerstech.EntityLayer.Entities;
 using Cornerstech.DataAccessLayer.Abstract;
 using Cornerstech.DataAccessLayer.UnitOfWork.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cornerstech.BusinessLayer.Concrete
 {
@@ -43,12 +38,24 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-
         public void TUpdate(Risk t)
         {
             _RiskDal.Update(t);
             _uowDal.Save();
         }
+
+        public double GetRiskValueByRiskName(string riskName)
+        {
+            var risk = _RiskDal.GetQueryableList().FirstOrDefault(x => x.Name == riskName);
+
+            if (risk != null)
+            {
+                return (risk.Frequence ?? 0.0) * (risk.Level ?? 0.0) * (risk.Possibility ?? 0.0);
+            }
+
+            return 0.0;
+        }
+
     }
 
 }

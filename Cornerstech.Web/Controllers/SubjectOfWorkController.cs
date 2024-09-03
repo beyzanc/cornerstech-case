@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using Cornerstech.BusinessLayer.Abstract;
+﻿using Cornerstech.BusinessLayer.Abstract;
 using Cornerstech.EntityLayer.Entities;
-using Cornerstech.Web.Models.Agreement;
 using Cornerstech.Web.Models.SubjectOfWork;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -191,7 +189,6 @@ namespace Cornerstech.Web.Controllers
 
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

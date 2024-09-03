@@ -43,15 +43,18 @@ namespace Cornerstech.Web.Controllers
         {
             var riskLevels = _riskManagementService.TGetList()
                 .Where(r => r.RiskCategory == "Seviye")
-                .ToDictionary(r => (double)r.RiskValue, r => r.RiskDescription);
+                .GroupBy(r => r.RiskValue)
+                .ToDictionary(g => (double)g.Key, g => g.First().RiskDescription);
 
             var riskFrequencies = _riskManagementService.TGetList()
                 .Where(r => r.RiskCategory == "Frekans")
-                .ToDictionary(r => (double)r.RiskValue, r => r.RiskDescription);
+                .GroupBy(r => r.RiskValue)
+                .ToDictionary(g => (double)g.Key, g => g.First().RiskDescription);
 
             var riskPossibilities = _riskManagementService.TGetList()
                 .Where(r => r.RiskCategory == "Olasılık")
-                .ToDictionary(r => (double)r.RiskValue, r => r.RiskDescription);
+                .GroupBy(r => r.RiskValue)
+                .ToDictionary(g => (double)g.Key, g => g.First().RiskDescription);
 
             var viewModel = new RiskManagementViewModel
             {
@@ -63,7 +66,6 @@ namespace Cornerstech.Web.Controllers
             return View(viewModel);
         }
 
-        // GET: Risk/Create
         public IActionResult Create()
         {
             var riskLevels = _riskManagementService.TGetList()
@@ -126,6 +128,7 @@ namespace Cornerstech.Web.Controllers
 
             return View(model);
         }
+       
         [HttpPost]
         public IActionResult Delete(int id)
         {

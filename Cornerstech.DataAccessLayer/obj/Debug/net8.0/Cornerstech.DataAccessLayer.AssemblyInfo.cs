@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cornerstech.DataAccessLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+645a9c39787e17d7b7425ed43ec9ab9e623cbe68")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26e9507a9176ee981c97957af8b996c942fe60a1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cornerstech.DataAccessLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cornerstech.DataAccessLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

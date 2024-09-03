@@ -114,30 +114,7 @@
                     </div>
                 </div>
             </li>
-@* 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Ekler
-                </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>Risk Analizi</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../Views/Agreement/Index.cshtml">Riskler</a>
-                        <a class="collapse-item" href="../Views/Agreement/Create.cshtml">Risk Ekle</a>
-                    </div>
-                </div>
-            </li>
- *@
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
@@ -189,6 +166,20 @@
                                     </form>
                                 </div>
                             </li>
+
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link" href="@Url.Action("Index", "Notification")" id="messagesDropdown" role="button">
+                                    <i class="fas fa-envelope fa-fw"></i>
+                                    <!-- Counter - Messages -->
+                                    <span class="badge badge-danger badge-counter"></span>
+                                </a>
+                            </li>
+                        }
+
 
                             <div class="topbar-divider d-none d-sm-block"></div>
 

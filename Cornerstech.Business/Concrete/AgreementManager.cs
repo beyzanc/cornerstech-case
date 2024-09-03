@@ -52,7 +52,7 @@ namespace Cornerstech.BusinessLayer.Concrete
         {
             var statusCounts = _agreementDal.GetQueryableList()
                 .GroupBy(a => a.Status)
-                .Select(g => new { Status = g.Key, Count = g.Count() })
+                .Select(g => new { Status = g.Key ?? "Bilinmeyen", Count = g.Count() })
                 .ToDictionary(x => x.Status, x => x.Count);
 
             return statusCounts;

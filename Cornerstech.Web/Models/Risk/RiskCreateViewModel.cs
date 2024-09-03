@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Cornerstech.Web.Models.Risk
 {
     public class RiskCreateViewModel
     {
+
         [Required(ErrorMessage = "Risk adı giriniz.")]
         public string Name { get; set; }
 

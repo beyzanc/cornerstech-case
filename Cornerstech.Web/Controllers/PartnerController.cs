@@ -1,12 +1,9 @@
-﻿using AutoMapper;
-using Cornerstech.BusinessLayer.Abstract;
+﻿using Cornerstech.BusinessLayer.Abstract;
 using Cornerstech.EntityLayer.Entities;
-using Cornerstech.Web.Models.Agreement;
 using Cornerstech.Web.Models.Partner;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Cornerstech.Web.Controllers
 {
@@ -15,6 +12,7 @@ namespace Cornerstech.Web.Controllers
         private readonly IPartnerService _partnerService;
         private readonly IAgreementPartnerService _agreementPartnerService;
         private readonly IAgreementService _agreementService;
+
 
         public PartnerController(IPartnerService partnerService, IAgreementPartnerService agreementPartnerService, IAgreementService agreementService)
         {
@@ -101,7 +99,6 @@ namespace Cornerstech.Web.Controllers
 
             return View(agreements);
         }
-
 
         [HttpPost]
         public IActionResult Delete(int id)
@@ -242,8 +239,6 @@ namespace Cornerstech.Web.Controllers
 
             return RedirectToAction("GetAgreementsByPartner", new { partnerId = partnerId });
         }
-
-
 
     }
 }

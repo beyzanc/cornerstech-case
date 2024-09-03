@@ -58,6 +58,74 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Agreements");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6456),
+                            Description = "Özel yazılım çözümleri geliştirilmesi",
+                            EndDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Yazılım Geliştirme Anlaşması",
+                            StartDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "İptal Edildi"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6462),
+                            Description = "Büyük veri ve analitik hizmetleri sağlanması",
+                            EndDate = new DateTime(2025, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Veri Analizi Anlaşması",
+                            StartDate = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "Aktif"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6465),
+                            Description = "Müşteri hizmetleri yönetimi",
+                            EndDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Müşteri Hizmetleri Anlaşması",
+                            StartDate = new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "Aktif"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6467),
+                            Description = "Finansal analiz ve danışmanlık",
+                            EndDate = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Finansal Danışmanlık Anlaşması",
+                            StartDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "Tamamlandı"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6469),
+                            Description = "Pazarlama ve strateji danışmanlığı",
+                            EndDate = new DateTime(2025, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Pazarlama Stratejisi Anlaşması",
+                            StartDate = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "Tamamlandı"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6473),
+                            Description = "Lojistik süreçlerin yönetimi",
+                            EndDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Lojistik Yönetimi Anlaşması",
+                            StartDate = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "Aktif"
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.AgreementPartner", b =>
@@ -90,6 +158,32 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasIndex("PartnerId");
 
                     b.ToTable("AgreementPartners");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AgreementId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6622),
+                            IsActive = true,
+                            PartnerId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AgreementId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6625),
+                            IsActive = true,
+                            PartnerId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AgreementId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6626),
+                            IsActive = true,
+                            PartnerId = 3
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.AgreementRisk", b =>
@@ -122,6 +216,112 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasIndex("RiskId");
 
                     b.ToTable("AgreementRisks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AgreementId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6914),
+                            IsActive = true,
+                            RiskId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AgreementId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6917),
+                            IsActive = true,
+                            RiskId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AgreementId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6919),
+                            IsActive = true,
+                            RiskId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AgreementId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6920),
+                            IsActive = true,
+                            RiskId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AgreementId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6922),
+                            IsActive = true,
+                            RiskId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AgreementId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6924),
+                            IsActive = true,
+                            RiskId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AgreementId = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6925),
+                            IsActive = true,
+                            RiskId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AgreementId = 4,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6927),
+                            IsActive = true,
+                            RiskId = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AgreementId = 4,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6928),
+                            IsActive = true,
+                            RiskId = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AgreementId = 5,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6931),
+                            IsActive = true,
+                            RiskId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AgreementId = 5,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6932),
+                            IsActive = true,
+                            RiskId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AgreementId = 5,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6934),
+                            IsActive = true,
+                            RiskId = 6
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AgreementId = 6,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6935),
+                            IsActive = true,
+                            RiskId = 20
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.AgreementSubject", b =>
@@ -154,6 +354,232 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasIndex("SubjectId");
 
                     b.ToTable("AgreementSubjects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AgreementId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6966),
+                            IsActive = true,
+                            SubjectId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AgreementId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6969),
+                            IsActive = true,
+                            SubjectId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AgreementId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6970),
+                            IsActive = true,
+                            SubjectId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AgreementId = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6972),
+                            IsActive = true,
+                            SubjectId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AgreementId = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6976),
+                            IsActive = true,
+                            SubjectId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AgreementId = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6978),
+                            IsActive = true,
+                            SubjectId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AgreementId = 4,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6980),
+                            IsActive = true,
+                            SubjectId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AgreementId = 4,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6981),
+                            IsActive = true,
+                            SubjectId = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AgreementId = 5,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6983),
+                            IsActive = true,
+                            SubjectId = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AgreementId = 6,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6985),
+                            IsActive = true,
+                            SubjectId = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AgreementId = 6,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6986),
+                            IsActive = true,
+                            SubjectId = 11
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AgreementId = 6,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6988),
+                            IsActive = true,
+                            SubjectId = 12
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AgreementId = 6,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6989),
+                            IsActive = true,
+                            SubjectId = 13
+                        });
+                });
+
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Notifications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Text = "Yeni bir anlaşma oluşturuldu: Tedarikçi Anlaşması"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Text = "Yeni bir anlaşma oluşturuldu: Dağıtım Anlaşması"
+                        });
+                });
+
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.NotificationApplicationUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NotificationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("NotificationId");
+
+                    b.ToTable("NotificationApplicationUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ApplicationUserId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6700),
+                            IsActive = true,
+                            IsRead = false,
+                            NotificationId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ApplicationUserId = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6703),
+                            IsActive = true,
+                            IsRead = false,
+                            NotificationId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ApplicationUserId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6704),
+                            IsActive = true,
+                            IsRead = false,
+                            NotificationId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApplicationUserId = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6705),
+                            IsActive = true,
+                            IsRead = false,
+                            NotificationId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ApplicationUserId = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6706),
+                            IsActive = true,
+                            IsRead = false,
+                            NotificationId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ApplicationUserId = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6708),
+                            IsActive = true,
+                            IsRead = false,
+                            NotificationId = 2
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Partner", b =>
@@ -194,9 +620,57 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
                     b.ToTable("Partners");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "İstanbul",
+                            ContactEmail = "info@abctedarikci.com",
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6593),
+                            Industry = "Lojistik",
+                            IsActive = true,
+                            Name = "ABC Tedarikçi",
+                            PhoneNumber = "05321234567",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Bursa",
+                            ContactEmail = "info@xyzdagitim.com",
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6599),
+                            Industry = "Dağıtım",
+                            IsActive = true,
+                            Name = "XYZ Dağıtım",
+                            PhoneNumber = "05329876543",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "İstanbul",
+                            ContactEmail = "info@cornerstech.com",
+                            Country = "Türkiye",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6600),
+                            Industry = "Yazılım",
+                            IsActive = true,
+                            Name = "Cornerstech",
+                            PhoneNumber = "05444444444",
+                            UserId = 4
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Risk", b =>
@@ -236,6 +710,228 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Risks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = "İnsan Kaynakları",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6742),
+                            Frequence = 10.0,
+                            IsActive = true,
+                            Level = 100.0,
+                            Name = "Personel Kaybı Riski",
+                            Possibility = 10.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = "Bilgi Güvenliği",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6746),
+                            Frequence = 6.0,
+                            IsActive = true,
+                            Level = 40.0,
+                            Name = "Veri Kaybı Riski",
+                            Possibility = 6.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Hukuki",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6748),
+                            Frequence = 3.0,
+                            IsActive = true,
+                            Level = 15.0,
+                            Name = "Yasal Uyuşmazlık Riski",
+                            Possibility = 1.5
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Üretim",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6750),
+                            Frequence = 1.0,
+                            IsActive = true,
+                            Level = 7.0,
+                            Name = "Ürün Kalitesi Riski",
+                            Possibility = 0.20000000000000001
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "Ar-Ge",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6752),
+                            Frequence = 1.0,
+                            IsActive = true,
+                            Level = 3.0,
+                            Name = "Ar-Ge Projesi Başarısızlığı",
+                            Possibility = 0.20000000000000001
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Category = "Finans",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6755),
+                            Frequence = 10.0,
+                            IsActive = true,
+                            Level = 100.0,
+                            Name = "Kredi Riski",
+                            Possibility = 10.0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Category = "Çevresel",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6757),
+                            Frequence = 10.0,
+                            IsActive = true,
+                            Level = 100.0,
+                            Name = "Doğal Afet Riski",
+                            Possibility = 10.0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Category = "Tedarik Zinciri",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6759),
+                            Frequence = 3.0,
+                            IsActive = true,
+                            Level = 15.0,
+                            Name = "Tedarikçi İflası Riski",
+                            Possibility = 1.5
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Category = "İş Sağlığı ve Güvenliği",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6761),
+                            Frequence = 2.0,
+                            IsActive = true,
+                            Level = 7.0,
+                            Name = "İş Kazası Riski",
+                            Possibility = 1.5
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Category = "Finans",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6764),
+                            Frequence = 1.0,
+                            IsActive = true,
+                            Level = 3.0,
+                            Name = "Yatırım Getirisi Riski",
+                            Possibility = 0.20000000000000001
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Category = "Teknoloji",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6767),
+                            Frequence = 10.0,
+                            IsActive = true,
+                            Level = 100.0,
+                            Name = "Teknolojik Değişiklik Riski",
+                            Possibility = 10.0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Category = "Pazarlama",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6769),
+                            Frequence = 6.0,
+                            IsActive = true,
+                            Level = 40.0,
+                            Name = "Müşteri Memnuniyeti Riski",
+                            Possibility = 6.0
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Category = "Proje Yönetimi",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6771),
+                            Frequence = 3.0,
+                            IsActive = true,
+                            Level = 15.0,
+                            Name = "Projelerde Gecikme Riski",
+                            Possibility = 1.5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Category = "Pazarlama",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6774),
+                            Frequence = 1.0,
+                            IsActive = true,
+                            Level = 7.0,
+                            Name = "Talep Düşüşü Riski",
+                            Possibility = 0.20000000000000001
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Category = "Kurumsal Yönetim",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6776),
+                            Frequence = 1.0,
+                            IsActive = true,
+                            Level = 3.0,
+                            Name = "Kurumsal Yolsuzluk Riski",
+                            Possibility = 0.20000000000000001
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Category = "Pazarlama",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6778),
+                            Frequence = 10.0,
+                            IsActive = true,
+                            Level = 100.0,
+                            Name = "Pazarlama Başarısızlığı Riski",
+                            Possibility = 10.0
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Category = "Hukuki",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6780),
+                            Frequence = 6.0,
+                            IsActive = true,
+                            Level = 40.0,
+                            Name = "Fikri Mülkiyet İhlali Riski",
+                            Possibility = 6.0
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Category = "İnsan Kaynakları",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6783),
+                            Frequence = 3.0,
+                            IsActive = true,
+                            Level = 15.0,
+                            Name = "Çalışan Motivasyon Düşüşü",
+                            Possibility = 1.5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Category = "Çevresel",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6785),
+                            Frequence = 1.0,
+                            IsActive = true,
+                            Level = 7.0,
+                            Name = "İklim Değişikliği Riski",
+                            Possibility = 0.20000000000000001
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Category = "Üretim",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6787),
+                            Frequence = 10.0,
+                            IsActive = true,
+                            Level = 100.0,
+                            Name = "Ürün Geri Çağırma Riski",
+                            Possibility = 10.0
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.RiskManagement", b =>
@@ -269,6 +965,170 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RiskManagements");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7019),
+                            IsActive = true,
+                            RiskCategory = "Seviye",
+                            RiskDescription = "Birden fazla ölümlü kaza",
+                            RiskValue = 100.00m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7022),
+                            IsActive = true,
+                            RiskCategory = "Seviye",
+                            RiskDescription = "Öldürücü kaza",
+                            RiskValue = 40.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7023),
+                            IsActive = true,
+                            RiskCategory = "Seviye",
+                            RiskDescription = "Kalıcı hasar/yaralanma, iş kaybı",
+                            RiskValue = 15.00m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7025),
+                            IsActive = true,
+                            RiskCategory = "Seviye",
+                            RiskDescription = "Önemli hasar/yaralanma",
+                            RiskValue = 7.00m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7027),
+                            IsActive = true,
+                            RiskCategory = "Seviye",
+                            RiskDescription = "Küçük hasar/yaralanma",
+                            RiskValue = 3.00m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7029),
+                            IsActive = true,
+                            RiskCategory = "Seviye",
+                            RiskDescription = "Ucuz atlatma",
+                            RiskValue = 0.50m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7031),
+                            IsActive = true,
+                            RiskCategory = "Frekans",
+                            RiskDescription = "Hemen hemen sürekli",
+                            RiskValue = 10.00m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7032),
+                            IsActive = true,
+                            RiskCategory = "Frekans",
+                            RiskDescription = "Sık",
+                            RiskValue = 3.00m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7034),
+                            IsActive = true,
+                            RiskCategory = "Frekans",
+                            RiskDescription = "Ara sıra",
+                            RiskValue = 3.00m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7037),
+                            IsActive = true,
+                            RiskCategory = "Frekans",
+                            RiskDescription = "Sık değil",
+                            RiskValue = 2.00m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7038),
+                            IsActive = true,
+                            RiskCategory = "Frekans",
+                            RiskDescription = "Seyrek",
+                            RiskValue = 1.00m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7040),
+                            IsActive = true,
+                            RiskCategory = "Frekans",
+                            RiskDescription = "Çok seyrek",
+                            RiskValue = 0.50m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7042),
+                            IsActive = true,
+                            RiskCategory = "Frekans",
+                            RiskDescription = "Beklenir, kesin",
+                            RiskValue = 10.00m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7043),
+                            IsActive = true,
+                            RiskCategory = "Olasılık",
+                            RiskDescription = "Yüksek / oldukça mümkün",
+                            RiskValue = 6.00m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7045),
+                            IsActive = true,
+                            RiskCategory = "Olasılık",
+                            RiskDescription = "Olası",
+                            RiskValue = 3.00m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7047),
+                            IsActive = true,
+                            RiskCategory = "Olasılık",
+                            RiskDescription = "Mümkün fakat düşük",
+                            RiskValue = 2.00m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7048),
+                            IsActive = true,
+                            RiskCategory = "Olasılık",
+                            RiskDescription = "Beklenmez fakat mümkün",
+                            RiskValue = 0.50m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(7051),
+                            IsActive = true,
+                            RiskCategory = "Olasılık",
+                            RiskDescription = "Beklenmez",
+                            RiskValue = 0.20m
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.SubjectOfWork", b =>
@@ -303,6 +1163,188 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubjectOfWorks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = "BT",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6821),
+                            Description = "Özel yazılım geliştirme hizmetleri.",
+                            IsActive = true,
+                            Name = "Yazılım Geliştirme"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = "Lojistik",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6824),
+                            Description = "Kapsamlı lojistik çözümleri.",
+                            IsActive = true,
+                            Name = "Lojistik Destek"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Finans",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6825),
+                            Description = "Finansal yönetim ve yatırım danışmanlık hizmetleri.",
+                            IsActive = true,
+                            Name = "Finansal Danışmanlık"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Pazarlama",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6827),
+                            Description = "Pazarlama kampanyaları ve stratejik planlama.",
+                            IsActive = true,
+                            Name = "Pazarlama Stratejisi"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "Hukuk",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6829),
+                            Description = "Şirketler için hukuki danışmanlık ve dava desteği.",
+                            IsActive = true,
+                            Name = "Hukuki Danışmanlık"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Category = "İnsan Kaynakları",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6831),
+                            Description = "Personel yönetimi ve organizasyonel gelişim.",
+                            IsActive = true,
+                            Name = "İnsan Kaynakları Yönetimi"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Category = "Üretim",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6833),
+                            Description = "Üretim süreçlerinin optimizasyonu ve verimliliği.",
+                            IsActive = true,
+                            Name = "Üretim Yönetimi"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Category = "Proje Yönetimi",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6834),
+                            Description = "Büyük ölçekli projelerin yönetimi ve planlanması.",
+                            IsActive = true,
+                            Name = "Proje Yönetimi"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Category = "Ar-Ge",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6836),
+                            Description = "Yeni ürün geliştirme ve inovasyon süreçleri.",
+                            IsActive = true,
+                            Name = "Ar-Ge Çalışmaları"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Category = "Kalite",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6838),
+                            Description = "Ürün ve hizmetlerde kalite güvence süreçleri.",
+                            IsActive = true,
+                            Name = "Kalite Kontrol"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Category = "BT",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6840),
+                            Description = "Şirketlerin dijital altyapıya geçişi ve modernizasyonu.",
+                            IsActive = true,
+                            Name = "Dijital Dönüşüm"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Category = "Finans",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6842),
+                            Description = "Şirket risklerinin tespiti ve yönetimi.",
+                            IsActive = true,
+                            Name = "Risk Yönetimi"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Category = "Lojistik",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6843),
+                            Description = "Satın alma süreçleri ve tedarik zinciri yönetimi.",
+                            IsActive = true,
+                            Name = "Satın Alma ve Tedarik Zinciri"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Category = "Pazarlama",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6845),
+                            Description = "Müşteri memnuniyeti ve sadakat programları.",
+                            IsActive = true,
+                            Name = "Müşteri İlişkileri Yönetimi"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Category = "Finans",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6847),
+                            Description = "Vergi planlaması ve uyum hizmetleri.",
+                            IsActive = true,
+                            Name = "Vergi Danışmanlığı"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Category = "İnsan Kaynakları",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6848),
+                            Description = "İç iletişim stratejileri ve çalışan motivasyonu.",
+                            IsActive = true,
+                            Name = "Şirket İç İletişim"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Category = "BT",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6850),
+                            Description = "Siber güvenlik ve veri koruma hizmetleri.",
+                            IsActive = true,
+                            Name = "Bilişim Güvenliği"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Category = "Satış",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6853),
+                            Description = "Satış ekiplerinin yönetimi ve performans takibi.",
+                            IsActive = true,
+                            Name = "Satış Yönetimi"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Category = "Enerji",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6854),
+                            Description = "Enerji tüketimi ve verimliliği yönetimi.",
+                            IsActive = true,
+                            Name = "Enerji Yönetimi"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Category = "Ar-Ge",
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6856),
+                            Description = "Şirketlerde inovasyon kültürünün oluşturulması.",
+                            IsActive = true,
+                            Name = "İnovasyon Yönetimi"
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.SubjectRisk", b =>
@@ -373,6 +1415,48 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6560),
+                            Email = "beyza@example.com",
+                            IsActive = true,
+                            Password = "1234",
+                            Role = "Admin",
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6564),
+                            Email = "beyza@example.com",
+                            IsActive = true,
+                            Password = "1234",
+                            Role = "Partner",
+                            UserName = "beyza"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6566),
+                            Email = "mehmet@example.com",
+                            IsActive = true,
+                            Password = "1234",
+                            Role = "Partner",
+                            UserName = "mehmet"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2024, 9, 3, 23, 16, 43, 824, DateTimeKind.Local).AddTicks(6568),
+                            Email = "asli@example.com",
+                            IsActive = true,
+                            Password = "1234",
+                            Role = "Partner",
+                            UserName = "asli"
+                        });
                 });
 
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.AgreementPartner", b =>
@@ -432,6 +1516,34 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.NotificationApplicationUser", b =>
+                {
+                    b.HasOne("Cornerstech.EntityLayer.Entities.User", "ApplicationUser")
+                        .WithMany("NotificationApplicationUsers")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Cornerstech.EntityLayer.Entities.Notification", "Notification")
+                        .WithMany("NotificationApplicationUsers")
+                        .HasForeignKey("NotificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Notification");
+                });
+
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Partner", b =>
+                {
+                    b.HasOne("Cornerstech.EntityLayer.Entities.User", "User")
+                        .WithOne("Partner")
+                        .HasForeignKey("Cornerstech.EntityLayer.Entities.Partner", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.SubjectRisk", b =>
                 {
                     b.HasOne("Cornerstech.EntityLayer.Entities.Risk", "Risk")
@@ -460,6 +1572,11 @@ namespace Cornerstech.DataAccessLayer.Migrations
                     b.Navigation("AgreementSubjects");
                 });
 
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Notification", b =>
+                {
+                    b.Navigation("NotificationApplicationUsers");
+                });
+
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.Partner", b =>
                 {
                     b.Navigation("AgreementPartners");
@@ -473,6 +1590,14 @@ namespace Cornerstech.DataAccessLayer.Migrations
             modelBuilder.Entity("Cornerstech.EntityLayer.Entities.SubjectOfWork", b =>
                 {
                     b.Navigation("AgreementSubjects");
+                });
+
+            modelBuilder.Entity("Cornerstech.EntityLayer.Entities.User", b =>
+                {
+                    b.Navigation("NotificationApplicationUsers");
+
+                    b.Navigation("Partner")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

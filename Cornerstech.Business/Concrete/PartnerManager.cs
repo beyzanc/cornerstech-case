@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cornerstech.DataAccessLayer.EntityFramework;
 
 namespace Cornerstech.BusinessLayer.Concrete
 {
@@ -43,12 +44,13 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-
         public void TUpdate(Partner t)
         {
             _PartnerDal.Update(t);
             _uowDal.Save();
         }
+
+
     }
 
 }

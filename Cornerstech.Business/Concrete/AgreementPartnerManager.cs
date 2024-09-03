@@ -2,11 +2,6 @@
 using Cornerstech.EntityLayer.Entities;
 using Cornerstech.DataAccessLayer.Abstract;
 using Cornerstech.DataAccessLayer.UnitOfWork.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cornerstech.BusinessLayer.Concrete
 {

@@ -1,6 +1,5 @@
 ﻿namespace Cornerstech.EntityLayer.Entities
 {
-
     public class AgreementPartner : BaseEntity
         {
             public int AgreementId { get; set; }

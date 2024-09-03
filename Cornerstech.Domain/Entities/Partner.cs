@@ -8,6 +8,8 @@
         public string? City { get; set; }
         public string? Country { get; set; }
         public string? Industry { get; set; }
+        public int? UserId { get; set; }
+        public User User { get; set; }
         public ICollection<AgreementPartner>? AgreementPartners { get; set; }
     }
 }

@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSignalR();
+
 builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -29,9 +31,10 @@ builder.Services.AddScoped<IAgreementSubjectService, AgreementSubjectManager>();
 builder.Services.AddScoped<IPartnerService, PartnerManager>();
 builder.Services.AddScoped<IRiskService, RiskManager>();
 builder.Services.AddScoped<ISubjectOfWorkService, SubjectOfWorkManager>();
-builder.Services.AddScoped<ISubjectRiskService, SubjectRiskManager>();
 builder.Services.AddScoped<IUserService, UserManager>();
 builder.Services.AddScoped<IRiskManagementService, RiskManagementManager>();
+builder.Services.AddScoped<INotificationService, NotificationManager>();
+builder.Services.AddScoped<INotificationApplicationUserService, NotificationApplicationUserManager>();
 
 builder.Services.AddScoped<IAgreementDal, EFAgreementDal>();
 builder.Services.AddScoped<IAgreementPartnerDal, EFAgreementPartnerDal>();
@@ -40,11 +43,11 @@ builder.Services.AddScoped<IAgreementSubjectDal, EFAgreementSubjectDal>();
 builder.Services.AddScoped<IPartnerDal, EFPartnerDal>();
 builder.Services.AddScoped<IRiskDal, EFRiskDal>();
 builder.Services.AddScoped<ISubjectOfWorkDal, EFSubjectOfWorkDal>();
-builder.Services.AddScoped<ISubjectRiskDal, EFSubjectRiskDal>();
 builder.Services.AddScoped<IUserDal, EFUserDal>();
 builder.Services.AddScoped<IRiskManagementDal, EFRiskManagementDal>();
+builder.Services.AddScoped<INotificationDal, EFNotificationDal>();
+builder.Services.AddScoped<INotificationApplicationUserDal, EFNotificationApplicationUserDal>();
 
-//builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(MappingProfile).Assembly);
 
 var app = builder.Build();
 
@@ -64,7 +67,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    //pattern: "{controller=Home}/{action=Index}/{id?}");
     pattern: "{controller=Home}/{action=Login}/{id?}");
 
 app.Run();

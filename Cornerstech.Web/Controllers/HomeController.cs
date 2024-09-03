@@ -1,10 +1,8 @@
 using Cornerstech.BusinessLayer.Abstract;
-using Cornerstech.Web.Models;
 using Cornerstech.Web.Models.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
@@ -44,7 +42,8 @@ namespace Cornerstech.Web.Controllers
                     var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, model.Username),
-                new Claim(ClaimTypes.Role, role)
+                new Claim(ClaimTypes.Role, role),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -93,16 +92,5 @@ namespace Cornerstech.Web.Controllers
             return RedirectToAction("Login", "Home");
         }
 
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

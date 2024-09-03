@@ -106,9 +106,6 @@
                     <td>@GetFrequenceDescription(item.Frequence)</td>
                     <td>@GetPossibilityDescription(item.Possibility)</td>
                     <td>@((item.Level * item.Frequence * item.Possibility).ToString("F2"))</td>
-@*                     <td>
-                        <a href="@Url.Action("Edit", "Risk", new { id = item.Id })" class="btn btn-success btn-sm" style="background-color: #FFC94A; border-color: #FFC94A;">Düzenle</a>
-                    </td> *@
                     <td>
                         <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Bu riski silmek istediğinize emin misiniz?');">
                             <button type="submit" class="btn btn-danger btn-sm" style="background-color: #C40C0C; border-color: #C40C0C;">Sil</button>

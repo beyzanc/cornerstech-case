@@ -1,4 +1,5 @@
-﻿using Cornerstech.EntityLayer.Entities;
+﻿using Cornerstech.DataAccessLayer.DataSeeder;
+using Cornerstech.EntityLayer.Entities;
 using Cornerstech.EntityLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,11 +17,20 @@ public class Context : DbContext
     public DbSet<AgreementPartner> AgreementPartners { get; set; } 
     public DbSet<AgreementRisk> AgreementRisks { get; set; } 
     public DbSet<AgreementSubject> AgreementSubjects { get; set; } 
-    public DbSet<SubjectRisk> SubjectRisks { get; set; } 
     public DbSet<RiskManagement> RiskManagements { get; set; } 
+    public DbSet<Notification> Notifications { get; set; } 
+    public DbSet<NotificationApplicationUser> NotificationApplicationUsers { get; set; } 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Partner>()
+            .HasOne(p => p.User)
+            .WithOne(u => u.Partner)
+            .HasForeignKey<Partner>(p => p.UserId);
+
+        DataSeeder.Seed(modelBuilder); // Calls the Seed method from the DataSeeder class to populate the database with initial data.
+
     }
 }

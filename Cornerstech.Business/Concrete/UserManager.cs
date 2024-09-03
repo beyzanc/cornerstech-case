@@ -2,6 +2,7 @@
 using Cornerstech.EntityLayer.Entities;
 using Cornerstech.DataAccessLayer.Abstract;
 using Cornerstech.DataAccessLayer.UnitOfWork.Abstract;
+using System.Security.Claims;
 
 namespace Cornerstech.BusinessLayer.Concrete
 {
@@ -71,5 +72,22 @@ namespace Cornerstech.BusinessLayer.Concrete
             var user = GetByName(username);
             return user?.Role;
         }
+        public int? GetUserId(ClaimsPrincipal user)
+        {
+            var userIdClaim = user?.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return userId;
+            }
+
+            return null;
+        }
+
+        public int? GetUserIdByPartnerId(int partnerId)
+        {
+            var user = _UserDal.GetQueryableList().FirstOrDefault(x => x.Partner.Id == partnerId);
+            return user?.Id;
+        }
+
     }
 }

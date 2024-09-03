@@ -1,6 +1,4 @@
-﻿using Cornerstech.EntityLayer.Enums;
-
-namespace Cornerstech.EntityLayer.Entities
+﻿namespace Cornerstech.EntityLayer.Entities
 {
     public class Risk : BaseEntity
     {
@@ -10,5 +8,6 @@ namespace Cornerstech.EntityLayer.Entities
         public double? Frequence { get; set; }
         public double? Possibility { get; set; }
         public ICollection<AgreementRisk>? AgreementRisks { get; set; }
+
     }
 }

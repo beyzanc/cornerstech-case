@@ -38,7 +38,6 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-
         public void TUpdate(RiskManagement t)
         {
             _RiskManagementDal.Update(t);
