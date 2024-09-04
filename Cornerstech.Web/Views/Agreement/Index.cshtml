@@ -26,9 +26,13 @@
                 <option value="Beklemede">Beklemede</option>
             </select>
         </div>
-        <div class="col-md-2 offset-md-3 mb-2">
-            <a href="@Url.Action("Create", "Agreement")" class="btn float-right btn-sm" style="background-color: #008170; color: white;">Ekle</a>
-        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="col-md-2 offset-md-3 mb-2">
+                <a href="@Url.Action("Create", "Agreement")" class="btn float-right btn-sm" style="background-color: #008170; color: white;">Ekle</a>
+            </div>
+        }
+
     </div>
 </form>
 
@@ -68,8 +72,12 @@
                 <th>
                     <a asp-action="Index" asp-route-sortOrder="CreatedDate" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "CreatedDate" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Anlaşma Tarihi</a>
                 </th>
-                <th> </th>
-                <th> </th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th> </th>
+                    <th> </th>
+                }
+
             </tr>
         </thead>
         <tbody>
@@ -161,14 +169,17 @@
                     </td>
 
                     <td>@(item.Agreement.CreatedDate.ToString("dd.MM.yyyy"))</td>
-                    <td>
-                        <a href="@Url.Action("Edit", "Agreement", new { id = item.Agreement.Id })" class="btn btn-success btn-sm" style="background-color: #FFC94A; border-color: #FFC94A;">Düzenle</a>
-                    </td>
-                    <td>
-                        <form asp-action="Delete" asp-route-id="@item.Agreement.Id" method="post" onsubmit="return confirm('Bu anlaşmayı silmek istediğinize emin misiniz?');">
-                            <button type="submit" class="btn btn-danger btn-sm" style="background-color: #C40C0C; border-color: #C40C0C;">Sil</button>
-                        </form>
-                    </td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a href="@Url.Action("Edit", "Agreement", new { id = item.Agreement.Id })" class="btn btn-success btn-sm" style="background-color: #FFC94A; border-color: #FFC94A;">Düzenle</a>
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-route-id="@item.Agreement.Id" method="post" onsubmit="return confirm('Bu anlaşmayı silmek istediğinize emin misiniz?');">
+                                <button type="submit" class="btn btn-danger btn-sm" style="background-color: #C40C0C; border-color: #C40C0C;">Sil</button>
+                            </form>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

@@ -43,6 +43,40 @@ namespace Cornerstech.BusinessLayer.Concrete
             _RiskManagementDal.Update(t);
             _uowDal.Save();
         }
+
+        public double CalculateAverageScore()
+        {
+            var riskList = _RiskManagementDal.GetQueryableList();
+
+            if (!riskList.Any())
+            {
+                return 0;
+            }
+
+            double totalScore = 0;
+            int validCount = 0;
+
+            foreach (var risk in riskList)
+            {
+                decimal score = risk.RiskValue;
+
+                if (score > 0)
+                {
+                    totalScore += (double)score;
+                    validCount++;
+                }
+            }
+
+            if (validCount == 0)
+            {
+                return 0;
+            }
+
+            double averageScore = totalScore / validCount;
+
+            return Math.Round(averageScore, 2);
+        }
+
     }
 
 }

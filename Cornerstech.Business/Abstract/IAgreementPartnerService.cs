@@ -4,5 +4,6 @@ namespace Cornerstech.BusinessLayer.Abstract
 {
     public interface IAgreementPartnerService : IGenericService<AgreementPartner>
     {
+        int GetPartnerCountWithAgreements();
     }
 }

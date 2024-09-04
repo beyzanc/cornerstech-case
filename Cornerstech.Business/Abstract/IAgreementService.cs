@@ -7,6 +7,7 @@ namespace Cornerstech.BusinessLayer.Abstract
         Dictionary<string, int> GetAgreementStatusCounts();
         List<int> GetMonthlyAgreementCounts();
         Dictionary<string, int> GetIndustryAgreementCounts();
+        int GetTotalAgreementCountInCurrentYear();
 
     }
 

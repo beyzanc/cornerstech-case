@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cornerstech.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240904001620_minor-changes")]
+    partial class minorchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +66,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7375),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7108),
                             Description = "Özel yazılım çözümleri geliştirilmesi",
                             EndDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
@@ -74,7 +77,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7381),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7115),
                             Description = "Büyük veri ve analitik hizmetleri sağlanması",
                             EndDate = new DateTime(2025, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
@@ -85,7 +88,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7384),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7117),
                             Description = "Müşteri hizmetleri yönetimi",
                             EndDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
@@ -96,7 +99,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7419),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7120),
                             Description = "Finansal analiz ve danışmanlık",
                             EndDate = new DateTime(2025, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
@@ -107,7 +110,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7422),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7123),
                             Description = "Pazarlama ve strateji danışmanlığı",
                             EndDate = new DateTime(2025, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
@@ -118,7 +121,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7427),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7127),
                             Description = "Lojistik süreçlerin yönetimi",
                             EndDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
@@ -164,7 +167,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 1,
                             AgreementId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7588),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7299),
                             IsActive = true,
                             PartnerId = 1
                         },
@@ -172,7 +175,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 2,
                             AgreementId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7591),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7302),
                             IsActive = true,
                             PartnerId = 2
                         },
@@ -180,7 +183,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 3,
                             AgreementId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7592),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7303),
                             IsActive = true,
                             PartnerId = 3
                         });
@@ -222,7 +225,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 1,
                             AgreementId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7867),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7591),
                             IsActive = true,
                             RiskId = 1
                         },
@@ -230,7 +233,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 2,
                             AgreementId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7870),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7594),
                             IsActive = true,
                             RiskId = 2
                         },
@@ -238,7 +241,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 3,
                             AgreementId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7872),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7596),
                             IsActive = true,
                             RiskId = 3
                         },
@@ -246,7 +249,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 4,
                             AgreementId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7874),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7598),
                             IsActive = true,
                             RiskId = 4
                         },
@@ -254,7 +257,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 5,
                             AgreementId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7875),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7599),
                             IsActive = true,
                             RiskId = 5
                         },
@@ -262,7 +265,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 6,
                             AgreementId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7878),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7602),
                             IsActive = true,
                             RiskId = 6
                         },
@@ -270,7 +273,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 7,
                             AgreementId = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7879),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7604),
                             IsActive = true,
                             RiskId = 7
                         },
@@ -278,7 +281,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 8,
                             AgreementId = 4,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7881),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7605),
                             IsActive = true,
                             RiskId = 8
                         },
@@ -286,7 +289,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 9,
                             AgreementId = 4,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7882),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7607),
                             IsActive = true,
                             RiskId = 9
                         },
@@ -294,7 +297,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 10,
                             AgreementId = 5,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7884),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7610),
                             IsActive = true,
                             RiskId = 1
                         },
@@ -302,7 +305,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 11,
                             AgreementId = 5,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7886),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7612),
                             IsActive = true,
                             RiskId = 2
                         },
@@ -310,7 +313,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 12,
                             AgreementId = 5,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7888),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7613),
                             IsActive = true,
                             RiskId = 6
                         },
@@ -318,7 +321,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 13,
                             AgreementId = 6,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7889),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7615),
                             IsActive = true,
                             RiskId = 20
                         });
@@ -360,7 +363,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 1,
                             AgreementId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7922),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7647),
                             IsActive = true,
                             SubjectId = 1
                         },
@@ -368,7 +371,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 2,
                             AgreementId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7926),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7650),
                             IsActive = true,
                             SubjectId = 2
                         },
@@ -376,7 +379,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 3,
                             AgreementId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7927),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7652),
                             IsActive = true,
                             SubjectId = 3
                         },
@@ -384,7 +387,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 4,
                             AgreementId = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7929),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7654),
                             IsActive = true,
                             SubjectId = 4
                         },
@@ -392,7 +395,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 5,
                             AgreementId = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7931),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7655),
                             IsActive = true,
                             SubjectId = 5
                         },
@@ -400,7 +403,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 6,
                             AgreementId = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7933),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7658),
                             IsActive = true,
                             SubjectId = 6
                         },
@@ -408,7 +411,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 7,
                             AgreementId = 4,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7935),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7687),
                             IsActive = true,
                             SubjectId = 7
                         },
@@ -416,7 +419,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 8,
                             AgreementId = 4,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7936),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7689),
                             IsActive = true,
                             SubjectId = 8
                         },
@@ -424,7 +427,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 9,
                             AgreementId = 5,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7938),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7690),
                             IsActive = true,
                             SubjectId = 9
                         },
@@ -432,7 +435,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 10,
                             AgreementId = 6,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7940),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7693),
                             IsActive = true,
                             SubjectId = 10
                         },
@@ -440,7 +443,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 11,
                             AgreementId = 6,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7942),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7694),
                             IsActive = true,
                             SubjectId = 11
                         },
@@ -448,7 +451,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 12,
                             AgreementId = 6,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7944),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7696),
                             IsActive = true,
                             SubjectId = 12
                         },
@@ -456,7 +459,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 13,
                             AgreementId = 6,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7945),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7698),
                             IsActive = true,
                             SubjectId = 13
                         });
@@ -530,7 +533,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 1,
                             ApplicationUserId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7639),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7352),
                             IsActive = true,
                             IsRead = false,
                             NotificationId = 1
@@ -539,7 +542,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 2,
                             ApplicationUserId = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7642),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7355),
                             IsActive = true,
                             IsRead = false,
                             NotificationId = 2
@@ -548,7 +551,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 3,
                             ApplicationUserId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7643),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7356),
                             IsActive = true,
                             IsRead = false,
                             NotificationId = 1
@@ -557,7 +560,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 4,
                             ApplicationUserId = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7645),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7357),
                             IsActive = true,
                             IsRead = false,
                             NotificationId = 1
@@ -566,7 +569,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 5,
                             ApplicationUserId = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7646),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7358),
                             IsActive = true,
                             IsRead = false,
                             NotificationId = 2
@@ -575,7 +578,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 6,
                             ApplicationUserId = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7648),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7361),
                             IsActive = true,
                             IsRead = false,
                             NotificationId = 2
@@ -638,7 +641,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                             City = "İstanbul",
                             ContactEmail = "info@abctedarikci.com",
                             Country = "Türkiye",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7557),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7264),
                             Industry = "Lojistik",
                             IsActive = true,
                             Name = "ABC Tedarikçi",
@@ -651,7 +654,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                             City = "Bursa",
                             ContactEmail = "info@xyzdagitim.com",
                             Country = "Türkiye",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7562),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7270),
                             Industry = "Dağıtım",
                             IsActive = true,
                             Name = "XYZ Dağıtım",
@@ -664,7 +667,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                             City = "İstanbul",
                             ContactEmail = "info@cornerstech.com",
                             Country = "Türkiye",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7564),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7272),
                             Industry = "Yazılım",
                             IsActive = true,
                             Name = "Cornerstech",
@@ -716,7 +719,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 1,
                             Category = "İnsan Kaynakları",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7678),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7390),
                             Frequence = 10.0,
                             IsActive = true,
                             Level = 100.0,
@@ -727,7 +730,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 2,
                             Category = "Bilgi Güvenliği",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7683),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7395),
                             Frequence = 6.0,
                             IsActive = true,
                             Level = 40.0,
@@ -738,7 +741,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 3,
                             Category = "Hukuki",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7685),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7397),
                             Frequence = 3.0,
                             IsActive = true,
                             Level = 15.0,
@@ -749,7 +752,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 4,
                             Category = "Üretim",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7688),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7399),
                             Frequence = 1.0,
                             IsActive = true,
                             Level = 7.0,
@@ -760,7 +763,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 5,
                             Category = "Ar-Ge",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7690),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7402),
                             Frequence = 1.0,
                             IsActive = true,
                             Level = 3.0,
@@ -771,7 +774,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 6,
                             Category = "Finans",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7694),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7405),
                             Frequence = 10.0,
                             IsActive = true,
                             Level = 100.0,
@@ -782,7 +785,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 7,
                             Category = "Çevresel",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7696),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7407),
                             Frequence = 10.0,
                             IsActive = true,
                             Level = 100.0,
@@ -793,7 +796,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 8,
                             Category = "Tedarik Zinciri",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7698),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7444),
                             Frequence = 3.0,
                             IsActive = true,
                             Level = 15.0,
@@ -804,7 +807,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 9,
                             Category = "İş Sağlığı ve Güvenliği",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7704),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7446),
                             Frequence = 2.0,
                             IsActive = true,
                             Level = 7.0,
@@ -815,7 +818,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 10,
                             Category = "Finans",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7708),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7449),
                             Frequence = 1.0,
                             IsActive = true,
                             Level = 3.0,
@@ -826,7 +829,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 11,
                             Category = "Teknoloji",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7710),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7452),
                             Frequence = 10.0,
                             IsActive = true,
                             Level = 100.0,
@@ -837,7 +840,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 12,
                             Category = "Pazarlama",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7712),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7454),
                             Frequence = 6.0,
                             IsActive = true,
                             Level = 40.0,
@@ -848,7 +851,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 13,
                             Category = "Proje Yönetimi",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7714),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7456),
                             Frequence = 3.0,
                             IsActive = true,
                             Level = 15.0,
@@ -859,7 +862,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 14,
                             Category = "Pazarlama",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7716),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7459),
                             Frequence = 1.0,
                             IsActive = true,
                             Level = 7.0,
@@ -870,7 +873,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 15,
                             Category = "Kurumsal Yönetim",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7718),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7461),
                             Frequence = 1.0,
                             IsActive = true,
                             Level = 3.0,
@@ -881,7 +884,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 16,
                             Category = "Pazarlama",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7721),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7464),
                             Frequence = 10.0,
                             IsActive = true,
                             Level = 100.0,
@@ -892,7 +895,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 17,
                             Category = "Hukuki",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7723),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7466),
                             Frequence = 6.0,
                             IsActive = true,
                             Level = 40.0,
@@ -903,7 +906,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 18,
                             Category = "İnsan Kaynakları",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7726),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7469),
                             Frequence = 3.0,
                             IsActive = true,
                             Level = 15.0,
@@ -914,7 +917,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 19,
                             Category = "Çevresel",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7728),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7471),
                             Frequence = 1.0,
                             IsActive = true,
                             Level = 7.0,
@@ -925,7 +928,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 20,
                             Category = "Üretim",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7730),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7474),
                             Frequence = 10.0,
                             IsActive = true,
                             Level = 100.0,
@@ -970,7 +973,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7978),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7735),
                             IsActive = true,
                             RiskCategory = "Seviye",
                             RiskDescription = "Birden fazla ölümlü kaza",
@@ -979,7 +982,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7981),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7738),
                             IsActive = true,
                             RiskCategory = "Seviye",
                             RiskDescription = "Öldürücü kaza",
@@ -988,7 +991,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7983),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7740),
                             IsActive = true,
                             RiskCategory = "Seviye",
                             RiskDescription = "Kalıcı hasar/yaralanma, iş kaybı",
@@ -997,7 +1000,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7985),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7742),
                             IsActive = true,
                             RiskCategory = "Seviye",
                             RiskDescription = "Önemli hasar/yaralanma",
@@ -1006,7 +1009,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7987),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7744),
                             IsActive = true,
                             RiskCategory = "Seviye",
                             RiskDescription = "Küçük hasar/yaralanma",
@@ -1015,7 +1018,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7989),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7747),
                             IsActive = true,
                             RiskCategory = "Seviye",
                             RiskDescription = "Ucuz atlatma",
@@ -1024,7 +1027,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7991),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7749),
                             IsActive = true,
                             RiskCategory = "Frekans",
                             RiskDescription = "Hemen hemen sürekli",
@@ -1033,7 +1036,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7993),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7751),
                             IsActive = true,
                             RiskCategory = "Frekans",
                             RiskDescription = "Sık",
@@ -1042,7 +1045,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7995),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7753),
                             IsActive = true,
                             RiskCategory = "Frekans",
                             RiskDescription = "Ara sıra",
@@ -1051,7 +1054,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7998),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7756),
                             IsActive = true,
                             RiskCategory = "Frekans",
                             RiskDescription = "Sık değil",
@@ -1060,7 +1063,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8000),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7758),
                             IsActive = true,
                             RiskCategory = "Frekans",
                             RiskDescription = "Seyrek",
@@ -1069,7 +1072,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8003),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7760),
                             IsActive = true,
                             RiskCategory = "Frekans",
                             RiskDescription = "Çok seyrek",
@@ -1078,16 +1081,16 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8005),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7761),
                             IsActive = true,
-                            RiskCategory = "Olasılık",
+                            RiskCategory = "Frekans",
                             RiskDescription = "Beklenir, kesin",
                             RiskValue = 10.00m
                         },
                         new
                         {
                             Id = 14,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8007),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7763),
                             IsActive = true,
                             RiskCategory = "Olasılık",
                             RiskDescription = "Yüksek / oldukça mümkün",
@@ -1096,7 +1099,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8009),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7765),
                             IsActive = true,
                             RiskCategory = "Olasılık",
                             RiskDescription = "Olası",
@@ -1105,7 +1108,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8035),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7767),
                             IsActive = true,
                             RiskCategory = "Olasılık",
                             RiskDescription = "Mümkün fakat düşük",
@@ -1114,7 +1117,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8038),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7769),
                             IsActive = true,
                             RiskCategory = "Olasılık",
                             RiskDescription = "Beklenmez fakat mümkün",
@@ -1123,7 +1126,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(8040),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7771),
                             IsActive = true,
                             RiskCategory = "Olasılık",
                             RiskDescription = "Beklenmez",
@@ -1169,7 +1172,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 1,
                             Category = "BT",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7790),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7514),
                             Description = "Özel yazılım geliştirme hizmetleri.",
                             IsActive = true,
                             Name = "Yazılım Geliştirme"
@@ -1178,7 +1181,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 2,
                             Category = "Lojistik",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7794),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7518),
                             Description = "Kapsamlı lojistik çözümleri.",
                             IsActive = true,
                             Name = "Lojistik Destek"
@@ -1187,7 +1190,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 3,
                             Category = "Finans",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7796),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7519),
                             Description = "Finansal yönetim ve yatırım danışmanlık hizmetleri.",
                             IsActive = true,
                             Name = "Finansal Danışmanlık"
@@ -1196,7 +1199,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 4,
                             Category = "Pazarlama",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7797),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7521),
                             Description = "Pazarlama kampanyaları ve stratejik planlama.",
                             IsActive = true,
                             Name = "Pazarlama Stratejisi"
@@ -1205,7 +1208,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 5,
                             Category = "Hukuk",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7799),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7523),
                             Description = "Şirketler için hukuki danışmanlık ve dava desteği.",
                             IsActive = true,
                             Name = "Hukuki Danışmanlık"
@@ -1214,7 +1217,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 6,
                             Category = "İnsan Kaynakları",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7801),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7525),
                             Description = "Personel yönetimi ve organizasyonel gelişim.",
                             IsActive = true,
                             Name = "İnsan Kaynakları Yönetimi"
@@ -1223,7 +1226,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 7,
                             Category = "Üretim",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7803),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7527),
                             Description = "Üretim süreçlerinin optimizasyonu ve verimliliği.",
                             IsActive = true,
                             Name = "Üretim Yönetimi"
@@ -1232,7 +1235,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 8,
                             Category = "Proje Yönetimi",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7805),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7529),
                             Description = "Büyük ölçekli projelerin yönetimi ve planlanması.",
                             IsActive = true,
                             Name = "Proje Yönetimi"
@@ -1241,7 +1244,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 9,
                             Category = "Ar-Ge",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7806),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7531),
                             Description = "Yeni ürün geliştirme ve inovasyon süreçleri.",
                             IsActive = true,
                             Name = "Ar-Ge Çalışmaları"
@@ -1250,7 +1253,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 10,
                             Category = "Kalite",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7809),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7534),
                             Description = "Ürün ve hizmetlerde kalite güvence süreçleri.",
                             IsActive = true,
                             Name = "Kalite Kontrol"
@@ -1259,7 +1262,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 11,
                             Category = "BT",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7811),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7536),
                             Description = "Şirketlerin dijital altyapıya geçişi ve modernizasyonu.",
                             IsActive = true,
                             Name = "Dijital Dönüşüm"
@@ -1268,7 +1271,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 12,
                             Category = "Finans",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7812),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7538),
                             Description = "Şirket risklerinin tespiti ve yönetimi.",
                             IsActive = true,
                             Name = "Risk Yönetimi"
@@ -1277,7 +1280,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 13,
                             Category = "Lojistik",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7814),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7540),
                             Description = "Satın alma süreçleri ve tedarik zinciri yönetimi.",
                             IsActive = true,
                             Name = "Satın Alma ve Tedarik Zinciri"
@@ -1286,7 +1289,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 14,
                             Category = "Pazarlama",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7817),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7541),
                             Description = "Müşteri memnuniyeti ve sadakat programları.",
                             IsActive = true,
                             Name = "Müşteri İlişkileri Yönetimi"
@@ -1295,7 +1298,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 15,
                             Category = "Finans",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7818),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7543),
                             Description = "Vergi planlaması ve uyum hizmetleri.",
                             IsActive = true,
                             Name = "Vergi Danışmanlığı"
@@ -1304,7 +1307,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 16,
                             Category = "İnsan Kaynakları",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7820),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7545),
                             Description = "İç iletişim stratejileri ve çalışan motivasyonu.",
                             IsActive = true,
                             Name = "Şirket İç İletişim"
@@ -1313,7 +1316,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 17,
                             Category = "BT",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7822),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7547),
                             Description = "Siber güvenlik ve veri koruma hizmetleri.",
                             IsActive = true,
                             Name = "Bilişim Güvenliği"
@@ -1322,7 +1325,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 18,
                             Category = "Satış",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7824),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7550),
                             Description = "Satış ekiplerinin yönetimi ve performans takibi.",
                             IsActive = true,
                             Name = "Satış Yönetimi"
@@ -1331,7 +1334,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 19,
                             Category = "Enerji",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7826),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7551),
                             Description = "Enerji tüketimi ve verimliliği yönetimi.",
                             IsActive = true,
                             Name = "Enerji Yönetimi"
@@ -1340,7 +1343,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         {
                             Id = 20,
                             Category = "Ar-Ge",
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7828),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7553),
                             Description = "Şirketlerde inovasyon kültürünün oluşturulması.",
                             IsActive = true,
                             Name = "İnovasyon Yönetimi"
@@ -1388,7 +1391,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7519),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7224),
                             Email = "beyza@example.com",
                             IsActive = true,
                             Password = "1234",
@@ -1398,7 +1401,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7522),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7228),
                             Email = "beyza@example.com",
                             IsActive = true,
                             Password = "1234",
@@ -1408,7 +1411,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7524),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7230),
                             Email = "mehmet@example.com",
                             IsActive = true,
                             Password = "1234",
@@ -1418,7 +1421,7 @@ namespace Cornerstech.DataAccessLayer.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 9, 4, 3, 18, 23, 602, DateTimeKind.Local).AddTicks(7526),
+                            CreatedDate = new DateTime(2024, 9, 4, 3, 16, 20, 145, DateTimeKind.Local).AddTicks(7232),
                             Email = "asli@example.com",
                             IsActive = true,
                             Password = "1234",

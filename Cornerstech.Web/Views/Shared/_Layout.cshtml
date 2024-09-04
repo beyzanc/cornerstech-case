@@ -44,6 +44,7 @@
                     </a>
                 </li>                
             }
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -59,12 +60,19 @@
                     <i class="fas fa-fw fa-list-alt"></i>
                     <span>Anlaşmalar</span>
                 </a>
-                <div id="collapseAgreements" class="collapse" aria-labelledby="headingAgreements" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("Index", "Agreement")">Anlaşmalar</a>
-                        <a class="collapse-item" href="@Url.Action("Create", "Agreement")">Anlaşma Ekle</a>
+                
+                    <div id="collapseAgreements" class="collapse" aria-labelledby="headingAgreements" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="@Url.Action("Index", "Agreement")">Anlaşmalar</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="collapse-item" href="@Url.Action("Create", "Agreement")">Anlaşma Ekle</a>
+                        }
+                        </div>
                     </div>
-                </div>
+                
+
+
             </li>
 
             <!-- Nav Item - Pages Collapse Menu (Ortaklar) -->
@@ -92,19 +100,24 @@
                     <i class="fas fa-fw fa-object-group"></i>
                     <span>İş Konuları</span>
                 </a>
-                <div id="collapseSubjects" class="collapse" aria-labelledby="headingSubjects" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("Index", "SubjectOfWork")">Konular</a>
-                        <a class="collapse-item" href="@Url.Action("Create", "SubjectOfWork")">Konu Ekle</a>
-                    </div>
-                </div>
+                
+                    <div id="collapseSubjects" class="collapse" aria-labelledby="headingSubjects" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="@Url.Action("Index", "SubjectOfWork")">Konular</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="collapse-item" href="@Url.Action("Create", "SubjectOfWork")">Konu Ekle</a>
+                        }
+                        </div>
+                    </div>                    
+                
             </li>
 
             <!-- Nav Item - Pages Collapse Menu (Riskler) -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRisks"
                    aria-expanded="true" aria-controls="collapseRisks">
-                    <i class="fas fa-fw fa-object-group"></i>
+                    <i class="fas fa-fw fa-exclamation-triangle"></i>
                     <span>Risk Yönetimi</span>
                 </a>
                 <div id="collapseRisks" class="collapse" aria-labelledby="headingRisks" data-parent="#accordionSidebar">
@@ -167,8 +180,8 @@
                                 </div>
                             </li>
 
-                            <div class="topbar-divider d-none d-sm-block"></div>
-
+@*                             <div class="topbar-divider d-none d-sm-block"></div>
+ *@
                         @if (!User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown no-arrow mx-1">

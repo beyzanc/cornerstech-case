@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\Theme\\css\\sb-admin-2.min.css"
     },
     {
+      "Id": "C:\\Users\\beyza\\source\\repos\\Cornerstech\\Cornerstech.Web\\wwwroot\\Theme\\img\\login-image.png",
+      "PackagePath": "staticwebassets\\Theme\\img\\login-image.png"
+    },
+    {
       "Id": "C:\\Users\\beyza\\source\\repos\\Cornerstech\\Cornerstech.Web\\wwwroot\\Theme\\img\\undraw_posting_photo.svg",
       "PackagePath": "staticwebassets\\Theme\\img\\undraw_posting_photo.svg"
     },

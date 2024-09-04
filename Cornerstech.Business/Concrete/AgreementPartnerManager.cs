@@ -8,12 +8,14 @@ namespace Cornerstech.BusinessLayer.Concrete
     public class AgreementPartnerManager : IAgreementPartnerService
     {
         private readonly IAgreementPartnerDal _agreementPartnerDal;
+        private readonly IPartnerDal _partnerDal;
         private readonly IUnitOfWorkDal _uowDal;
 
-        public AgreementPartnerManager(IUnitOfWorkDal uowDal, IAgreementPartnerDal AgreementPartnerDal)
+        public AgreementPartnerManager(IUnitOfWorkDal uowDal, IAgreementPartnerDal AgreementPartnerDal, IPartnerDal partnerDal)
         {
             _uowDal = uowDal;
             _agreementPartnerDal = AgreementPartnerDal;
+            _partnerDal = partnerDal;
         }
 
         public void TDelete(AgreementPartner t)
@@ -43,6 +45,19 @@ namespace Cornerstech.BusinessLayer.Concrete
             _agreementPartnerDal.Update(t);
             _uowDal.Save();
         }
+
+        public int GetPartnerCountWithAgreements()
+        {
+            var distinctPartnerCount = (from ap in _agreementPartnerDal.GetQueryableList()
+                                        join p in _partnerDal.GetQueryableList()
+                                        on ap.PartnerId equals p.Id
+                                        select ap.PartnerId)
+                                        .Distinct()
+                                        .Count();
+
+            return distinctPartnerCount;
+        }
+
     }
 
 }

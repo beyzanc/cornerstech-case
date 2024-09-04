@@ -13,13 +13,18 @@ namespace Cornerstech.Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IAgreementService _agreementService;
         private readonly IUserService _userService;
+        private readonly IAgreementPartnerService _agreementPartnerService;
+        private readonly IRiskManagementService _riskManagementService;
 
 
-        public HomeController(ILogger<HomeController> logger, IAgreementService agreementService, IUserService userService)
+        public HomeController(ILogger<HomeController> logger, IAgreementService agreementService, IUserService userService, 
+                                IAgreementPartnerService agreementPartnerService, IRiskManagementService riskManagementService)
         {
             _logger = logger;
             _agreementService = agreementService;
             _userService = userService;
+            _agreementPartnerService = agreementPartnerService;
+            _riskManagementService = riskManagementService;
         }
 
         [HttpGet]
@@ -74,11 +79,17 @@ namespace Cornerstech.Web.Controllers
         {
             var agreementStatusCounts = _agreementService.GetAgreementStatusCounts();
             var monthlyAgreementCounts = _agreementService.GetMonthlyAgreementCounts();
-            var industryAgreementCounts = _agreementService.GetIndustryAgreementCounts(); 
+            var industryAgreementCounts = _agreementService.GetIndustryAgreementCounts();
+            var totalAgreementCountInCurrentYear = _agreementService.GetTotalAgreementCountInCurrentYear();
+            var partnerCountWithAgreements = _agreementPartnerService.GetPartnerCountWithAgreements();
+            var riskScoreAverage = _riskManagementService.CalculateAverageScore();
 
             ViewBag.AgreementStatusCounts = agreementStatusCounts;
             ViewBag.MonthlyAgreementCounts = monthlyAgreementCounts;
             ViewBag.IndustryAgreementCounts = industryAgreementCounts;
+            ViewBag.TotalAgreementCountInCurrentYear = totalAgreementCountInCurrentYear;
+            ViewBag.PartnerCountWithAgreements = partnerCountWithAgreements;
+            ViewBag.RiskScoreAverage = riskScoreAverage;
 
             return View();
         }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "f7xlHKPJvpOuSCBLVd2UB3KLuV+boV8fGsBPOsE0Fuw=",
+  "Hash": "sbmxf/V5+KpVhzR2FMS0b4FoA9VHgOItvqlW+rXz0Fw=",
   "Source": "Cornerstech.Web",
   "BasePath": "_content/Cornerstech.Web",
   "Mode": "Default",
@@ -1231,6 +1231,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Theme\\css\\sb-admin-2.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\beyza\\source\\repos\\Cornerstech\\Cornerstech.Web\\wwwroot\\Theme\\img\\login-image.png",
+      "SourceId": "Cornerstech.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\beyza\\source\\repos\\Cornerstech\\Cornerstech.Web\\wwwroot\\",
+      "BasePath": "_content/Cornerstech.Web",
+      "RelativePath": "Theme/img/login-image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Theme\\img\\login-image.png"
     },
     {
       "Identity": "C:\\Users\\beyza\\source\\repos\\Cornerstech\\Cornerstech.Web\\wwwroot\\Theme\\img\\undraw_posting_photo.svg",

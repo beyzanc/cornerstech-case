@@ -92,5 +92,18 @@ namespace Cornerstech.BusinessLayer.Concrete
             return industryCounts;
         }
 
+
+        public int GetTotalAgreementCountInCurrentYear()
+        {
+            DateTime currentDate = DateTime.Now;
+            DateTime firstDayOfYear = new DateTime(currentDate.Year, 1, 1);
+
+            int count = _agreementDal.GetQueryableList()
+                .Where(a => a.CreatedDate >= firstDayOfYear && a.CreatedDate <= currentDate)
+                .Count();
+
+            return count;
+        }
+
     }
 }

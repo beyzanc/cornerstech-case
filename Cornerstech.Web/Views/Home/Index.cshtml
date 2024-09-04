@@ -3,6 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var agreementStatusCounts = ViewBag.AgreementStatusCounts as Dictionary<string, int>;
     var monthlyAgreementCounts = ViewBag.MonthlyAgreementCounts as List<int>;
+    var totalAgreementCountInCurrentYear = ViewBag.TotalAgreementCountInCurrentYear;
+    var partnerCountWithAgreements = ViewBag.PartnerCountWithAgreements;
+    var riskScoreAverage = ViewBag.RiskScoreAverage;
 }
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -16,7 +19,7 @@
 
     .chartContainer {
         flex: 1;
-        margin: 0 10px; 
+        margin: 0 10px;
     }
 
         .chartContainer canvas {
@@ -25,15 +28,75 @@
         }
 </style>
 
-<div id="chartWrapper">
-    <div class="chartContainer">
-        <canvas id="myDoughnutChart"></canvas>
+<div class="row">
+    <!-- Cards Section -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Anlaşma Kurulan Ortak Sayısı
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@partnerCountWithAgreements.ToString()</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-handshake fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="chartContainer">
-        <canvas id="myLineChart"></canvas>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Toplam Anlaşma Sayısı (Son 1 Yıl)
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@totalAgreementCountInCurrentYear.ToString()</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-file-contract fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="chartContainer">
-        <canvas id="myBarChart"></canvas>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Mevcut Risklerin Ortalama Değeri (1-10000)
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@riskScoreAverage.ToString()</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Section -->
+<div class="row">
+    <div id="chartWrapper" class="col-lg-12">
+        <div class="chartContainer">
+            <canvas id="myDoughnutChart"></canvas>
+        </div>
+        <div class="chartContainer">
+            <canvas id="myLineChart"></canvas>
+        </div>
+        <div class="chartContainer">
+            <canvas id="myBarChart"></canvas>
+        </div>
     </div>
 </div>
 

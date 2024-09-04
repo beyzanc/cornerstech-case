@@ -219,8 +219,9 @@ namespace Cornerstech.Web.Controllers
                         }
                     }
 
-                    return RedirectToAction("Index");
                 }
+                return RedirectToAction("Index");
+
             }
 
             ViewData["Partners"] = _partnerService.TGetList()

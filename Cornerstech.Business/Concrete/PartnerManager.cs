@@ -50,6 +50,16 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
+        //public int GetTotalPartnerCount()
+        //{
+        //    int count = _PartnerDal.GetQueryableList()
+        //        .Where(a => a.CreatedDate >= firstDayOfYear && a.CreatedDate <= currentDate)
+        //        .Count();
+
+        //    return count;
+        //}
+
+
 
     }
 
