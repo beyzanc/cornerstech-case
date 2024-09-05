@@ -10,7 +10,7 @@
 ## How to Use
 1. Clone the repository to your local machine:
 2. Set up the SQL Server connection string in the **appsettings.json**
-3. Run migrations to set up the database:
+3. Run migrations to set up the database on Cornerstech.Web project:
 ```
 dotnet ef database update
 ```
