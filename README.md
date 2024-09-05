@@ -18,7 +18,7 @@ dotnet ef database update
 ```
 dotnet run
 ```
-5. Navigate to https://localhost:5001 to view the application. To test admin and partner users, you can use the following name-password combinations:
+5. To test admin and partner users, you can use the following name-password combinations:
    
 | Role | Username | Password |
 |--------|-------|----------|
