@@ -46,7 +46,8 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-        public int GetPartnerCountWithAgreements()
+        public int GetPartnerCountWithAgreements() // Retrieves the count of distinct partners who are associated with one or more agreements
+
         {
             var distinctPartnerCount = (from ap in _agreementPartnerDal.GetQueryableList()
                                         join p in _partnerDal.GetQueryableList()

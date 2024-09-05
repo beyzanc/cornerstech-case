@@ -44,7 +44,8 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-        public double CalculateAverageScore()
+        public double CalculateAverageScore() // Calculates the average risk score based on the frequency, level, and possibility of risks
+
         {
             var riskList = _RiskManagementDal.GetQueryableList();
 

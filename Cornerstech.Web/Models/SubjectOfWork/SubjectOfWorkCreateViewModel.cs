@@ -11,7 +11,7 @@ namespace Cornerstech.Web.Models.SubjectOfWork
         [Required(ErrorMessage = "Detay giriniz.")]
         public required string Description { get; set; }
 
-        [Required(ErrorMessage = "Kategori giriniz.")]
+        [Required(ErrorMessage = "Kategori seçiniz.")]
         public required string Category { get; set; }
         public List<int>? SelectedAgreements { get; set; }
 

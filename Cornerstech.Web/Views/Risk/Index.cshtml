@@ -46,23 +46,28 @@
         }
     };
 }
-
+<h2>Riskler</h2>
 <form asp-action="Index" method="get">
     <div class="form-row">
-        <div class="col-md-4 mb-6">
+        <div class="col-md-4 mb-2">
             <div class="input-group">
-                <input name="term" class="form-control" placeholder="Risk..." />
+                <input name="term" class="form-control" placeholder="Risk, kategori..." />
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-info btn-sm">Ara</button>
                 </div>
             </div>
         </div>
+
         @if (User.IsInRole("Admin"))
         {
-            <div class="col-md-8 offset-md-4 text-right">
-                <a href="@Url.Action("Create", "Risk")" class="btn btn-sm" style="background-color: #008170; color: white;">Ekle</a>
+            <div class="col-md-5 offset-md-3 mb-2 text-right">
+                <div class="btn-group ml-auto">
+
+                    <a href="@Url.Action("Create", "Risk")" class="btn btn-sm mr-2" style="background-color: #008170; color: white;">Risk Ekle</a>
+                </div>
             </div>            
         }
+
     </div>
 </form>
 
@@ -76,15 +81,9 @@
                 <th>
                     <a asp-action="Index" asp-route-sortOrder="Category" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Category" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Kategori</a>
                 </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="Level" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Level" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Seviye</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="Frequence" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Frequence" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Gerçekleşme Sıklığı</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="Possibility" asp-route-sortDirection="@(ViewBag.CurrentSortOrder == "Possibility" ? ViewBag.CurrentSortDirection : "asc")" style="color: #304463;">Olasılık</a>
-                </th>
+                <th>Seviye</th>
+                <th>Gerçekleşme Sıklığı</th>
+                <th>Olasılık</th>
                 <th>
                     <a style="color: #304463">Risk Skoru (1-10000)</a> <i class="far fa-question-circle" title="Seviye * Gerçekleşme Sıklığı * Olasılık şeklinde hesaplanır."></i>
                 </th>

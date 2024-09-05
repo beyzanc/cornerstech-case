@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Cornerstech.DataAccessLayer.Repositories
 {
-    public class GenericRepository<T> : IGenericDal<T> where T : class
+    public class GenericRepository<T> : IGenericDal<T> where T : class // Generic repository implementing CRUD operations using Entity Framework for any entity type.
+
     {
         private readonly Context _context;
 

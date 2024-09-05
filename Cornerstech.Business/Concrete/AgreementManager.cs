@@ -48,7 +48,8 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-        public Dictionary<string, int> GetAgreementStatusCounts()
+        public Dictionary<string, int> GetAgreementStatusCounts() // Aggregates the number of agreements per status and returns a dictionary of status counts
+
         {
             var statusCounts = _agreementDal.GetQueryableList()
                 .GroupBy(a => a.Status)
@@ -58,7 +59,7 @@ namespace Cornerstech.BusinessLayer.Concrete
             return statusCounts;
         }
 
-        public List<int> GetMonthlyAgreementCounts()
+        public List<int> GetMonthlyAgreementCounts() // Returns the count of agreements created for each month of the current year.
         {
             var monthlyAgreementCounts = new List<int>(new int[12]);
 
@@ -73,7 +74,7 @@ namespace Cornerstech.BusinessLayer.Concrete
             return monthlyAgreementCounts;
         }
 
-        public Dictionary<string, int> GetIndustryAgreementCounts()
+        public Dictionary<string, int> GetIndustryAgreementCounts() // Calculates and returns the agreement count by industry
         {
 
             var industryCounts = _agreementDal.GetQueryableList()
@@ -93,7 +94,8 @@ namespace Cornerstech.BusinessLayer.Concrete
         }
 
 
-        public int GetTotalAgreementCountInCurrentYear()
+        public int GetTotalAgreementCountInCurrentYear() // Calculates and returns the total number of agreements created in the current calendar year
+
         {
             DateTime currentDate = DateTime.Now;
             DateTime firstDayOfYear = new DateTime(currentDate.Year, 1, 1);

@@ -44,7 +44,7 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-        public double GetRiskValueByRiskName(string riskName)
+        public double GetRiskValueByRiskName(string riskName) // Calculates the risk value for a given risk name by multiplying its frequence, level and possibility
         {
             var risk = _RiskDal.GetQueryableList().FirstOrDefault(x => x.Name == riskName);
 

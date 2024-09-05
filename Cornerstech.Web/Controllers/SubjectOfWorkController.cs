@@ -4,6 +4,7 @@ using Cornerstech.Web.Models.SubjectOfWork;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Cornerstech.Web.Controllers
 {
@@ -12,45 +13,77 @@ namespace Cornerstech.Web.Controllers
 
         private readonly ISubjectOfWorkService _subjectOfWokService;
         private readonly IAgreementService _agreementService;
+        private readonly IPartnerService _partnerService;
         private readonly IAgreementSubjectService _agreementSubjectService;
 
 
-        public SubjectOfWorkController(ISubjectOfWorkService subjectOfWorkService, IAgreementService agreementService, IAgreementSubjectService agreementSubjectService)
+        public SubjectOfWorkController(ISubjectOfWorkService subjectOfWorkService, IAgreementService agreementService, IAgreementSubjectService agreementSubjectService, IPartnerService partnerService)
         {
             _subjectOfWokService = subjectOfWorkService;
             _agreementService = agreementService;
             _agreementSubjectService = agreementSubjectService;
+            _partnerService = partnerService;
         }
 
-        public IActionResult Index(string term = "", string sortOrder = "Name", string sortDirection = "asc", string selectedCategory = "")
+        // Filter and sort subjects based on the search term, selected categories, agreements, and date range
+        public IActionResult Index(string term = "", string sortOrder = "Name", string sortDirection = "asc",
+                                    string[] selectedCategories = null, string[] selectedAgreements = null, DateTime? minDate = null, DateTime? maxDate = null)
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
-            selectedCategory = string.IsNullOrEmpty(selectedCategory) || selectedCategory == "Tümü" ? "" : selectedCategory.ToLower();
             ViewBag.CurrentSortOrder = sortOrder;
-            ViewBag.CurrentSortDirection = sortDirection == "asc" ? "desc" : "asc"; 
+            ViewBag.CurrentSortDirection = sortDirection == "asc" ? "desc" : "asc";
 
+            int? partnerId = null;
+            if (!User.IsInRole("Admin"))
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (int.TryParse(userId, out int parsedUserId))
+                {
+                    partnerId = _partnerService.GetPartnerIdByUserId(parsedUserId);
+                }
+            }
 
             var categories = _subjectOfWokService.TGetList()
-                    .Select(p => p.Category)
-                    .Distinct()
-                    .OrderBy(category => category)
-                    .ToList();
+                .Where(p => !string.IsNullOrEmpty(p.Category))
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Category,
+                    Text = p.Category
+                })
+                .Distinct()
+                .OrderBy(item => item.Text)
+                .ToList();
 
-            ViewBag.Categories = categories;
+            var agreements = _agreementService.TGetList()
+                .Where(p => !string.IsNullOrEmpty(p.Name))
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Name,
+                    Text = p.Name
+                })
+                .Distinct()
+                .OrderBy(item => item.Text)
+                .ToList();
+
+            ViewBag.SelectedAgreements = agreements;
+            ViewBag.SelectedCategories = categories;
 
             var subjects = _subjectOfWokService.TGetList()
                 .Include(a => a.AgreementSubjects)
                     .ThenInclude(ap => ap.Agreement)
+                    .ThenInclude(ag => ag.AgreementPartners)
+                    .ThenInclude(ap => ap.Partner)
                 .Where(a =>
                     (string.IsNullOrEmpty(term) ||
                      a.Name.ToLower().Contains(term) ||
                      a.Description.ToLower().Contains(term) ||
                      a.Category.ToLower().Contains(term) ||
-                    a.AgreementSubjects.Any(ap => ap.Agreement.Name.ToLower().Contains(term) &&
-                    (string.IsNullOrEmpty(selectedCategory) || a.Category.ToLower() == selectedCategory))
-)
+                     a.AgreementSubjects.Any(ap => ap.Agreement.Name.ToLower().Contains(term))) &&
+                    (selectedCategories == null || selectedCategories.Length == 0 || selectedCategories.Contains(a.Category)) &&
+                    (selectedAgreements == null || selectedAgreements.Length == 0 || a.AgreementSubjects.Any(ap => selectedAgreements.Contains(ap.Agreement.Name))) &&
+                    (!minDate.HasValue || a.CreatedDate >= minDate.Value) && (!maxDate.HasValue || a.CreatedDate <= maxDate.Value) &&
+                    (partnerId == null || a.AgreementSubjects.Any(asub => asub.Agreement.AgreementPartners.Any(ap => ap.PartnerId == partnerId)))
                 ).ToList();
-
 
             subjects = sortOrder switch
             {
@@ -76,7 +109,6 @@ namespace Cornerstech.Web.Controllers
                 return NotFound("Konu bulunamadı.");
             }
 
-
             _subjectOfWokService.TDelete(subject);
 
             return RedirectToAction("Index");
@@ -91,32 +123,34 @@ namespace Cornerstech.Web.Controllers
             }
 
             var agreements = _agreementService.TGetList();
-            var selectedPartners = _agreementSubjectService.TGetList()
-                                    .Where(ap => ap.AgreementId == id)
-                                    .Select(ap => ap.SubjectId)
-                                    .ToList();
+
+            var selectedAgreements = _agreementSubjectService.TGetList()
+                                              .Where(ap => ap.SubjectId == id)
+                                              .Select(ap => ap.AgreementId)
+                                              .ToList();
 
             var viewModel = new SubjectOfWorkDetailsViewModel
             {
                 Id = subject.Id,
                 Name = subject.Name,
                 Description = subject.Description,
-                AgreementOptions = agreements.Select(p => new SelectListItem
-                {
-                    Value = p.Id.ToString(),
-                    Text = p.Name,
-                    Selected = selectedPartners.Contains(p.Id)
-                }).ToList()
+                Category = subject.Category,
+                AgreementOptions = agreements
+                    .Select(p => new SelectListItem
+                    {
+                        Value = p.Id.ToString(),
+                        Text = p.Name,
+                        Selected = selectedAgreements.Contains(p.Id)
+                    })
+                    .ToList()
             };
 
             ViewBag.Categories = _subjectOfWokService.TGetList()
-                .Select(p => p.Category)
-                .Distinct()
-                .Select(i => new SelectListItem
+                .Select(p => new SelectListItem
                 {
-                    Value = i.ToString(),
-                    Text = i.ToString()
-                }).ToList();
+                    Value = p.Category,
+                    Text = p.Category
+                }).Distinct().ToList();
 
             return PartialView("Edit", viewModel);
         }
@@ -150,7 +184,7 @@ namespace Cornerstech.Web.Controllers
                     {
                         if (!model.SelectedAgreements.Contains(existingAgreement.AgreementId))
                         {
-                            _agreementSubjectService.TDelete(existingAgreement);
+                            _agreementSubjectService.TDelete(existingAgreement); // Remove unselected agreements
                         }
                     }
                 }
@@ -161,7 +195,7 @@ namespace Cornerstech.Web.Controllers
                     {
                         if (!existingAgreements.Any(ep => ep.Id == agreementId))
                         {
-                            _agreementSubjectService.TInsert(new AgreementSubject
+                            _agreementSubjectService.TInsert(new AgreementSubject // Add new agreements
                             {
                                 SubjectId = model.Id,
                                 AgreementId = agreementId
@@ -185,10 +219,20 @@ namespace Cornerstech.Web.Controllers
                     Text = p.Name
                 }).ToList();
 
-            ViewData["SelectedAgreements"] = new List<SelectListItem>();
+            ViewData["Categories"] = _subjectOfWokService.TGetList()
+                .Where(p => !string.IsNullOrEmpty(p.Category))
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Category,
+                    Text = p.Category
+                })
+                .Distinct()
+                .OrderBy(item => item.Text)
+                .ToList();
 
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -206,6 +250,7 @@ namespace Cornerstech.Web.Controllers
 
                 _subjectOfWokService.TInsert(subject);
 
+                // Add selected agreements
                 if (model.SelectedAgreements != null && model.SelectedAgreements.Any())
                 {
                     foreach (var agreementId in model.SelectedAgreements)
@@ -228,6 +273,17 @@ namespace Cornerstech.Web.Controllers
                     Value = p.Id.ToString(),
                     Text = p.Name
                 }).ToList();
+
+            ViewData["Categories"] = _subjectOfWokService.TGetList()
+                .Where(p => !string.IsNullOrEmpty(p.Category))
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Category,
+                    Text = p.Category
+                })
+                .Distinct()
+                .OrderBy(item => item.Text)
+                .ToList();
 
             return PartialView("Create", model);
         }

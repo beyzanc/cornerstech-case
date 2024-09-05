@@ -2,10 +2,12 @@
 using Cornerstech.DataAccessLayer.Abstract;
 using Cornerstech.DataAccessLayer.UnitOfWork.Abstract;
 using Cornerstech.EntityLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cornerstech.BusinessLayer.Concrete
 {
-    public class NotificationApplicationUserManager : INotificationApplicationUserService
+    public class NotificationApplicationUserManager : INotificationApplicationUserService // Service responsible for creating and managing notifications, triggered by updates to agreements or risks
+
     {
         private readonly INotificationApplicationUserDal _notificationApplicationUserDal;
         private readonly IUnitOfWorkDal _uowDal;
@@ -14,6 +16,13 @@ namespace Cornerstech.BusinessLayer.Concrete
         {
             _uowDal = uowDal;
             _notificationApplicationUserDal = NotificationApplicationUserDal;
+        }
+
+        public List<NotificationApplicationUser> GetUserNotifications(int userId) // Retrieves all notifications for a given user, filtered by their ID
+
+        {
+            return _notificationApplicationUserDal.GetQueryableList().Where(u => u.ApplicationUserId.Equals(userId))
+                                            .ToList();
         }
 
         public void TDelete(NotificationApplicationUser t)

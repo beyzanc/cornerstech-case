@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Cornerstech.EntityLayer.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Cornerstech.Web.Models.Agreement;
+using System.Security.Claims;
 
 namespace Cornerstech.Web.Controllers
 {
@@ -40,12 +41,52 @@ namespace Cornerstech.Web.Controllers
         }
 
         // GET: AllAgreements
-        public IActionResult Index(string term = "", string sortOrder = "Name", string sortDirection = "asc", string selectedStatus = "")
+        // Retrieves and filters agreements based on search criteria like status, partner, and date range
+        public IActionResult Index(string term = "", string[] selectedStatus = null, string[] selectedPartners = null,
+                                    string[] selectedRisks = null, string[] selectedSubjects = null, DateTime? minDate = null, DateTime? maxDate = null,
+                                      string sortOrder = "Name", string sortDirection = "asc")
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
-            selectedStatus = string.IsNullOrEmpty(selectedStatus) || selectedStatus == "Tümü" ? "" : selectedStatus.ToLower();
             ViewBag.CurrentSortOrder = sortOrder;
             ViewBag.CurrentSortDirection = sortDirection == "asc" ? "desc" : "asc";
+
+            // Identifies if the current user is a partner and gets their ID
+            int? partnerId = null; 
+            if (!User.IsInRole("Admin"))
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (int.TryParse(userId, out int parsedUserId))
+                {
+                    partnerId = _partnerService.GetPartnerIdByUserId(parsedUserId);
+                }
+            }
+
+            ViewBag.StatusOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Tamamlandı", Value = "Tamamlandı" },
+                new SelectListItem { Text = "Görüşülüyor", Value = "Görüşülüyor" },
+                new SelectListItem { Text = "İmzalandı", Value = "İmzalandı" },
+                new SelectListItem { Text = "İptal Edildi", Value = "İptal Edildi" },
+                new SelectListItem { Text = "Beklemede", Value = "Beklemede" }
+            };
+
+            ViewBag.PartnerOptions = _partnerService.TGetList().Select(p => new SelectListItem
+            {
+                Value = p.Name,
+                Text = p.Name
+            }).ToList();
+
+            ViewBag.RiskOptions = _riskService.TGetList().Select(p => new SelectListItem
+            {
+                Value = p.Name,
+                Text = p.Name
+            }).ToList();
+
+            ViewBag.SubjectOptions = _subjectService.TGetList().Select(ss => new SelectListItem
+            {
+                Value = ss.Name,
+                Text = ss.Name
+            }).ToList();
 
             var agreementPartners = _agreementService.TGetList()
                 .Include(a => a.AgreementPartners)
@@ -57,18 +98,25 @@ namespace Cornerstech.Web.Controllers
                 .Select(a => new
                 {
                     Agreement = a,
+                    AgreementPartners = a.AgreementPartners, 
                     Partners = a.AgreementPartners.Select(ap => ap.Partner.Name).ToList(),
                     Risks = a.AgreementRisks.Select(r => r.Risk.Name).ToList(),
                     Subjects = a.AgreementSubjects.Select(s => s.Subject.Name).ToList()
                 })
-                .Where(a => (string.IsNullOrEmpty(term) ||
-                             a.Partners.Any(p => p.ToLower().Contains(term)) ||
-                             a.Agreement.Name.ToLower().Contains(term) ||
+        .Where(a => (partnerId == null || a.AgreementPartners.Any(ap => ap.PartnerId == partnerId))
+                && (string.IsNullOrEmpty(term) || a.Partners.Any(p => p.ToLower().Contains(term)) ||
+                             a.Agreement.Name.ToLower().Contains(term) || a.Agreement.Description.ToLower().Contains(term) ||
                              a.Risks.Any(r => r.ToLower().Contains(term)) ||
-                             a.Subjects.Any(s => s.ToLower().Contains(term))) &&
-                            (string.IsNullOrEmpty(selectedStatus) || a.Agreement.Status.ToLower() == selectedStatus))
+                             a.Subjects.Any(s => s.ToLower().Contains(term)))
+                        && (selectedStatus == null || selectedStatus.Length == 0 || selectedStatus.Contains(a.Agreement.Status))
+                        && (selectedPartners == null || selectedPartners.Length == 0 || a.Partners.Any(p => selectedPartners.Contains(p)))
+                        && (selectedRisks == null || selectedRisks.Length == 0 || a.Risks.Any(r => selectedRisks.Contains(r)))
+                        && (selectedSubjects == null || selectedSubjects.Length == 0 || a.Subjects.Any(s => selectedSubjects.Contains(s)))
+                        && (!minDate.HasValue || a.Agreement.CreatedDate >= minDate)
+                        && (!maxDate.HasValue || a.Agreement.CreatedDate <= maxDate))
                 .ToList();
 
+            // Sorting logic based on selected order and direction
             agreementPartners = sortOrder switch
             {
                 "No" => (sortDirection == "asc" ? agreementPartners.OrderBy(a => a.Agreement.Id) : agreementPartners.OrderByDescending(a => a.Agreement.Id)).ToList(),
@@ -86,7 +134,7 @@ namespace Cornerstech.Web.Controllers
 
             return View(agreementPartners);
         }
-                        
+
         public IActionResult Create()
         {
             ViewData["Partners"] = _partnerService.TGetList()
@@ -110,12 +158,21 @@ namespace Cornerstech.Web.Controllers
                     Text = s.Name
                 }).ToList();
 
+            ViewBag.StatusOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Tamamlandı", Value = "Tamamlandı" },
+                new SelectListItem { Text = "Görüşülüyor", Value = "Görüşülüyor" },
+                new SelectListItem { Text = "İmzalandı", Value = "İmzalandı" },
+                new SelectListItem { Text = "İptal Edildi", Value = "İptal Edildi" },
+                new SelectListItem { Text = "Beklemede", Value = "Beklemede" }
+            };
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AgreementCreateViewModel model)
+        public async Task<IActionResult> Create(AgreementCreateViewModel model) // Handles the creation of a new agreement with associated partners, risks, and notifications
         {
             if (ModelState.IsValid)
             {
@@ -131,6 +188,7 @@ namespace Cornerstech.Web.Controllers
 
                 _agreementService.TInsert(agreement);
 
+                // Insert associated partners and send notifications
                 if (model.SelectedPartners != null && model.SelectedPartners.Any())
                 {
                     foreach (var partnerId in model.SelectedPartners)
@@ -160,6 +218,7 @@ namespace Cornerstech.Web.Controllers
                     }
                 }
 
+                // Insert associated risks and send notifications
                 if (model.SelectedRisks != null && model.SelectedRisks.Any())
                 {
                     foreach (var riskId in model.SelectedRisks)
@@ -175,6 +234,7 @@ namespace Cornerstech.Web.Controllers
                     }
                 }
 
+                // Insert associated subjects
                 if (model.SelectedSubjects != null && model.SelectedSubjects.Any())
                 {
                     foreach (var subjectId in model.SelectedSubjects)
@@ -188,6 +248,7 @@ namespace Cornerstech.Web.Controllers
                     }
                 }
 
+                // Send notifications based on calculated risk values for partners
                 if (model.SelectedRisks != null && model.SelectedRisks.Any() && model.SelectedPartners != null && model.SelectedPartners.Any())
                 {
                     foreach (var riskId in model.SelectedRisks)
@@ -202,7 +263,7 @@ namespace Cornerstech.Web.Controllers
 
                                 var notification = new Notification
                                 {
-                                    Text = agreement.Name + " anlaşması için risk skoru " + riskValue.ToString() + " olarak hesaplanmıştır. (" + risk.Name + ")"
+                                    Text = agreement.Name + " anlaşması için risk skoru " + riskValue.ToString("F2") + " olarak hesaplanmıştır. (" + risk.Name + ")"
                                 };
 
                                 _notificationService.TInsert(notification);
@@ -245,11 +306,21 @@ namespace Cornerstech.Web.Controllers
                     Text = s.Name
                 }).ToList();
 
+            ViewData["StatusOptions"] = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Tamamlandı", Value = "Tamamlandı" },
+                new SelectListItem { Text = "Görüşülüyor", Value = "Görüşülüyor" },
+                new SelectListItem { Text = "İmzalandı", Value = "İmzalandı" },
+                new SelectListItem { Text = "İptal Edildi", Value = "İptal Edildi" },
+                new SelectListItem { Text = "Beklemede", Value = "Beklemede" }
+            };
+
+
             return PartialView("Create", model);
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id) // Deletes an agreement and its associated partners
         {
             var agreement = _agreementService.TGetByID(id);
             if (agreement == null)
@@ -268,7 +339,7 @@ namespace Cornerstech.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id) // Loads agreement details for editing, including associated partners, risks, and subjects
         {
             var agreement = _agreementService.TGetByID(id);
             if (agreement == null)
@@ -298,7 +369,7 @@ namespace Cornerstech.Web.Controllers
             {
                 Id = agreement.Id,
                 Name = agreement.Name,
-                Description= agreement.Description,
+                Description = agreement.Description,
                 StartDate = agreement.StartDate ?? DateTime.MinValue,
                 EndDate = agreement.EndDate ?? DateTime.MinValue,
                 Status = agreement.Status ?? "",
@@ -325,20 +396,26 @@ namespace Cornerstech.Web.Controllers
             };
 
             ViewBag.StatusOptions = new List<SelectListItem>
-                                                            {
-                                                                new SelectListItem { Text = "Tamamlandı", Value = "Tamamlandı" },
-                                                                new SelectListItem { Text = "Görüşülüyor", Value = "Görüşülüyor" },
-                                                                new SelectListItem { Text = "İmzalandı", Value = "İmzalandı" },
-                                                                new SelectListItem { Text = "İptal Edildi", Value = "İptal Edildi" },
-                                                                new SelectListItem { Text = "Beklemede", Value = "Beklemede" }
-                                                            };
+            {
+                new SelectListItem { Text = "Tamamlandı", Value = "Tamamlandı", Selected = viewModel.Status == "Tamamlandı" },
+                new SelectListItem { Text = "Görüşülüyor", Value = "Görüşülüyor", Selected = viewModel.Status == "Görüşülüyor" },
+                new SelectListItem { Text = "İmzalandı", Value = "İmzalandı", Selected = viewModel.Status == "İmzalandı" },
+                new SelectListItem { Text = "İptal Edildi", Value = "İptal Edildi", Selected = viewModel.Status == "İptal Edildi" },
+                new SelectListItem { Text = "Beklemede", Value = "Beklemede", Selected = viewModel.Status == "Beklemede" }
+            };
+
+            if (string.IsNullOrEmpty(viewModel.Status))
+            {
+                ViewBag.StatusOptions.Insert(0, new SelectListItem { Text = "", Value = "", Selected = true });
+            }
 
             return PartialView("Edit", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(AgreementDetailsViewModel model)
+        public IActionResult Edit(AgreementDetailsViewModel model) // Handles the updating of agreement details, including associated partners, risks, and subjects
+
         {
             if (ModelState.IsValid)
             {
@@ -369,6 +446,7 @@ namespace Cornerstech.Web.Controllers
                            .ToList();
 
 
+                // Update partners associated with the agreement
                 if (existingPartners != null && existingPartners.Any())
                 {
                     foreach (var existingPartner in existingPartners)
@@ -395,6 +473,7 @@ namespace Cornerstech.Web.Controllers
                     }
                 }
 
+                // Update risks associated with the agreement
                 if (existingRisks != null && existingRisks.Any())
                 {
                     foreach (var existingRisk in existingRisks)
@@ -421,6 +500,7 @@ namespace Cornerstech.Web.Controllers
                     }
                 }
 
+                // Update subjects associated with the agreement
                 if (existingSubjects != null && existingSubjects.Any())
                 {
                     foreach (var existingSubject in existingSubjects)

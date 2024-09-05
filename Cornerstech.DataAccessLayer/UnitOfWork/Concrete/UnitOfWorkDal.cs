@@ -2,7 +2,8 @@
 
 namespace Cornerstech.DataAccessLayer.UnitOfWork.Concrete
 {
-    public class UnitOfWorkDal : IUnitOfWorkDal
+    public class UnitOfWorkDal : IUnitOfWorkDal // Unit of Work pattern to ensure multiple database operations are performed as a single transaction
+
     {
         private readonly Context _context;
 

@@ -15,7 +15,8 @@ namespace Cornerstech.Web.Models.Agreement
 
         [DataType(DataType.Date, ErrorMessage = "Tarih formatı hatalı.")]
         public DateTime? EndDate { get; set; }
-        public string? Status { get; set; }
+        [Required(ErrorMessage = "Durum seçiniz.")]
+        public required string Status { get; set; }
         public List<int>? SelectedPartners { get; set; }
         public List<int>? SelectedRisks { get; set; }
         public List<int>? SelectedSubjects { get; set; }

@@ -16,6 +16,7 @@ namespace Cornerstech.Web.Controllers
             _riskManagementService = riskManagementService;
         }
 
+        // Displays all risks and applies filtering and sorting based on parameters like term, sort order, and direction
         public IActionResult Index(string term = "", string sortOrder = "Name", string sortDirection = "asc")
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
@@ -23,8 +24,12 @@ namespace Cornerstech.Web.Controllers
             ViewBag.CurrentSortDirection = sortDirection == "asc" ? "desc" : "asc";
 
             var risks = _riskService.TGetList()
-                        .Where(r => string.IsNullOrEmpty(term) || r.Name.ToLower().Contains(term))
-                        .ToList();
+                            .Where(r =>
+                                (string.IsNullOrEmpty(term) || r.Name.ToLower().Contains(term)) ||
+                                (string.IsNullOrEmpty(term) || r.Category.ToString().Contains(term))
+                            )
+                            .ToList();
+
 
             risks = sortOrder switch
             {
@@ -39,6 +44,7 @@ namespace Cornerstech.Web.Controllers
             return View(risks);
         }
 
+        // Displays the risk management page with level, frequency, and possibility descriptions
         public IActionResult RiskManagement()
         {
             var riskLevels = _riskManagementService.TGetList()
@@ -110,6 +116,7 @@ namespace Cornerstech.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // If the model is invalid, reloads the form with available 
             var riskLevels = _riskManagementService.TGetList()
                 .Where(r => r.RiskCategory == "Seviye")
                 .ToDictionary(r => (double)r.RiskValue, r => r.RiskDescription);

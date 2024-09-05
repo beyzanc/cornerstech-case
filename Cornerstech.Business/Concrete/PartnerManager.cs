@@ -2,12 +2,6 @@
 using Cornerstech.EntityLayer.Entities;
 using Cornerstech.DataAccessLayer.Abstract;
 using Cornerstech.DataAccessLayer.UnitOfWork.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cornerstech.DataAccessLayer.EntityFramework;
 
 namespace Cornerstech.BusinessLayer.Concrete
 {
@@ -50,16 +44,11 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-        //public int GetTotalPartnerCount()
-        //{
-        //    int count = _PartnerDal.GetQueryableList()
-        //        .Where(a => a.CreatedDate >= firstDayOfYear && a.CreatedDate <= currentDate)
-        //        .Count();
-
-        //    return count;
-        //}
-
-
+        public int? GetPartnerIdByUserId(int userId) // Returns the PartnerId associated with a given UserId, or null if no partner is found.
+        {
+            var partner = _PartnerDal.GetQueryableList().FirstOrDefault(x => x.UserId == userId);
+            return partner?.Id;
+        }
 
     }
 

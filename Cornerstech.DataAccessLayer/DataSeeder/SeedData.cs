@@ -16,11 +16,11 @@ namespace Cornerstech.DataAccessLayer.DataSeeder
             var agreements = new List<Agreement>
             {
                 new Agreement { Id = 1, Name = "Yazılım Geliştirme Anlaşması", Description = "Özel yazılım çözümleri geliştirilmesi", StartDate = new DateTime(2024, 1, 1), EndDate = new DateTime(2025, 1, 1), Status = "İptal Edildi", CreatedDate = DateTime.Now, IsActive = true },
-                new Agreement { Id = 2, Name = "Veri Analizi Anlaşması", Description = "Büyük veri ve analitik hizmetleri sağlanması", StartDate = new DateTime(2024, 2, 1), EndDate = new DateTime(2025, 2, 1), Status = "Aktif", CreatedDate = DateTime.Now, IsActive = true },
-                new Agreement { Id = 3, Name = "Müşteri Hizmetleri Anlaşması", Description = "Müşteri hizmetleri yönetimi", StartDate = new DateTime(2024, 3, 1), EndDate = new DateTime(2025, 3, 1), Status = "Aktif", CreatedDate = DateTime.Now, IsActive = true },
+                new Agreement { Id = 2, Name = "Veri Analizi Anlaşması", Description = "Büyük veri ve analitik hizmetleri sağlanması", StartDate = new DateTime(2024, 2, 1), EndDate = new DateTime(2025, 2, 1), Status = "Görüşülüyor", CreatedDate = DateTime.Now, IsActive = true },
+                new Agreement { Id = 3, Name = "Müşteri Hizmetleri Anlaşması", Description = "Müşteri hizmetleri yönetimi", StartDate = new DateTime(2024, 3, 1), EndDate = new DateTime(2025, 3, 1), Status = "Beklemede", CreatedDate = DateTime.Now, IsActive = true },
                 new Agreement { Id = 4, Name = "Finansal Danışmanlık Anlaşması", Description = "Finansal analiz ve danışmanlık", StartDate = new DateTime(2024, 4, 1), EndDate = new DateTime(2025, 4, 1), Status = "Tamamlandı", CreatedDate = DateTime.Now, IsActive = true },
                 new Agreement { Id = 5, Name = "Pazarlama Stratejisi Anlaşması", Description = "Pazarlama ve strateji danışmanlığı", StartDate = new DateTime(2024, 5, 1), EndDate = new DateTime(2025, 5, 1), Status = "Tamamlandı", CreatedDate = DateTime.Now, IsActive = true },
-                new Agreement { Id = 6, Name = "Lojistik Yönetimi Anlaşması", Description = "Lojistik süreçlerin yönetimi", StartDate = new DateTime(2024, 6, 1), EndDate = new DateTime(2025, 6, 1), Status = "Aktif", CreatedDate = DateTime.Now, IsActive = true },
+                new Agreement { Id = 6, Name = "Lojistik Yönetimi Anlaşması", Description = "Lojistik süreçlerin yönetimi", StartDate = new DateTime(2024, 6, 1), EndDate = new DateTime(2025, 6, 1), Status = "Görüşülüyor", CreatedDate = DateTime.Now, IsActive = true },
             };
 
             modelBuilder.Entity<Agreement>().HasData(agreements);

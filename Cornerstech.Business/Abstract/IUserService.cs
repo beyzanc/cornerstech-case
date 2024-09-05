@@ -10,6 +10,5 @@ namespace Cornerstech.BusinessLayer.Abstract
         string GetUserRole(string username);
         int? GetUserId(ClaimsPrincipal user);
         int? GetUserIdByPartnerId(int partnerId);
-
     }
 }

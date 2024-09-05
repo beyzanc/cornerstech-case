@@ -51,12 +51,12 @@ namespace Cornerstech.BusinessLayer.Concrete
             _uowDal.Save();
         }
 
-        public User GetByName(string username)
+        public User GetByName(string username) // Retrieves a user entity by username.
         {
             return _UserDal.GetQueryableList().FirstOrDefault(x => x.UserName == username);
         }
 
-        public bool CheckPasswordByName(string username, string password)
+        public bool CheckPasswordByName(string username, string password) // Checks if the password for the specified username is correct.
         {
             var user = GetByName(username);
             if (user == null)
@@ -67,12 +67,13 @@ namespace Cornerstech.BusinessLayer.Concrete
             return user.Password == password;
         }
 
-        public string GetUserRole(string username)
+        public string GetUserRole(string username) // Retrieves the role of the user based on their username.
         {
             var user = GetByName(username);
             return user?.Role;
         }
-        public int? GetUserId(ClaimsPrincipal user)
+
+        public int? GetUserId(ClaimsPrincipal user) // Retrieves the user ID from a ClaimsPrincipal object.
         {
             var userIdClaim = user?.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
@@ -83,7 +84,7 @@ namespace Cornerstech.BusinessLayer.Concrete
             return null;
         }
 
-        public int? GetUserIdByPartnerId(int partnerId)
+        public int? GetUserIdByPartnerId(int partnerId) // Retrieves the user ID based on the associated partner's ID.
         {
             var user = _UserDal.GetQueryableList().FirstOrDefault(x => x.Partner.Id == partnerId);
             return user?.Id;

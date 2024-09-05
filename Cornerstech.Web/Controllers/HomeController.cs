@@ -34,15 +34,18 @@ namespace Cornerstech.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model) // Handles login attempts, validating the user's credentials
+
         {
             if (ModelState.IsValid)
             {
                 var user = _userService.GetByName(model.Username);
 
+                // Checks if the user credentials are valid, including the default admin login
                 if ((user != null && _userService.CheckPasswordByName(user.UserName, model.Password)) ||
                         (model.Username == "admin" && model.Password == "1234"))
                 {
+                    // Creates claims for the user based on their 
                     var role = _userService.GetUserRole(model.Username) ?? "Admin";
                     var claims = new List<Claim>
             {
@@ -53,8 +56,10 @@ namespace Cornerstech.Web.Controllers
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
+                    // Signs in the user with the created 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
+                    // Redirects the user based on their role
                     if (role == "Admin")
                     {
                         return RedirectToAction("Index", "Home");
@@ -75,7 +80,7 @@ namespace Cornerstech.Web.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Index()
+        public IActionResult Index() // Admin-only dashboard, provides statistical data for agreements, partners, and risks
         {
             var agreementStatusCounts = _agreementService.GetAgreementStatusCounts();
             var monthlyAgreementCounts = _agreementService.GetMonthlyAgreementCounts();
@@ -96,7 +101,8 @@ namespace Cornerstech.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Logout() // Logout the user and redirects them to the login page
+
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 

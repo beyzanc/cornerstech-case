@@ -13,7 +13,9 @@ namespace Cornerstech.Web.Models.Partner
         [Required(ErrorMessage = "Telefon numarası giriniz.")]
         public required string PhoneNumber { get; set; }
         public string? City { get; set; }
-        public string? Industry { get; set; }
+
+        [Required(ErrorMessage = "Endüstri seçiniz.")]
+        public required string Industry { get; set; }
         public DateTime? CreatedDate { get; set; }
 
     }

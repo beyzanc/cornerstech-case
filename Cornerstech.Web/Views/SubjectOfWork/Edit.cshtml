@@ -5,28 +5,29 @@
     ViewData["Title"] = "İş Konusu Düzenle";
 }
 
+<h2>Konuyu Düzenle</h2>
+
 <form asp-action="Edit">
 
     <div class="form-row">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label for="Name">Konu</label>
             <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" />
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-8">
             <label for="Description">Detay Bilgi</label>
             <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" />
-        </div>
-
-        <div class="form-group col-md-3">
-            <label for="Category">Kategori</label>
-            <select class="form-control" asp-for="Category" asp-items="ViewBag.Categories"></select>
         </div>
     </div>
 
     <div class="form-row">
-
         <div class="form-group col-md-4">
-            <label for="Agreements">Partnerler</label>
+            <label for="Category">Kategori</label>
+            <select class="form-control" asp-for="Category" asp-items="ViewBag.Categories"></select>
+        </div>
+
+        <div class="form-group col-md-8">
+            <label for="Agreements">Anlaşmalar</label>
             <select id="Agreements" name="SelectedAgreements" multiple="multiple" class="form-control">
                 @foreach (var agreement in Model.AgreementOptions)
                 {
@@ -39,7 +40,7 @@
     <div class="form-group row">
         <div class="col-md-6 text-left">
             <input type="submit" value="Kaydet" class="btn btn-primary" />
-            <a href="@Url.Action("Index", "Partner")" class="btn btn-secondary">Listeye Dön</a>
+            <a href="@Url.Action("Index", "SubjectOfWork")" class="btn btn-secondary">Listeye Dön</a>
         </div>
     </div>
 </form>

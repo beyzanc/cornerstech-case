@@ -2,7 +2,8 @@
 
 namespace Cornerstech.EntityLayer.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity // Base class containing common properties for all entities
+
     {
         [Key]
         public int Id { get; set; }

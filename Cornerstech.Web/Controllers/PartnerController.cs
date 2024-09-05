@@ -21,28 +21,50 @@ namespace Cornerstech.Web.Controllers
             _agreementService = agreementService;
         }
 
-        public IActionResult Index(string term = "", string selectedIndustry = "", string sortOrder = "Name", string sortDirection = "asc")
+        public IActionResult Index(string term = "", string sortOrder = "Name", string sortDirection = "asc", 
+                                    string[] selectedIndustries = null, string[] selectedCities = null, DateTime? minDate = null, DateTime? maxDate = null)
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
-            selectedIndustry = string.IsNullOrEmpty(selectedIndustry) || selectedIndustry == "Tümü" ? "" : selectedIndustry.ToLower();
 
             ViewBag.CurrentSortOrder = sortOrder;
             ViewBag.CurrentSortDirection = sortDirection == "asc" ? "desc" : "asc";
 
-            var industries = _partnerService.TGetList()
-                                .Select(p => p.Industry)
-                                .Distinct()
-                                .OrderBy(industry => industry)
-                                .ToList();
+            var industries = _partnerService.TGetList() // Fetch distinct industries for filtering
+                .Where(p => !string.IsNullOrEmpty(p.Industry))
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Industry,
+                    Text = p.Industry
+                })
+                .Distinct()
+                .OrderBy(item => item.Text)
+                .ToList();
+
+            var cities = _partnerService.TGetList() // Fetch distinct cities for filtering
+                .Where(p => !string.IsNullOrEmpty(p.City)) 
+                .Select(p => new SelectListItem
+                {
+                    Value = p.City,
+                    Text = p.City
+                })
+                .Distinct()
+                .OrderBy(item => item.Text)
+                .ToList();
+
+
             ViewBag.Industries = industries;
+            ViewBag.Cities = cities;
 
             var partners = _partnerService.TGetList()
-                               .Where(p => (string.IsNullOrEmpty(term) ||
-                                            p.Name.ToLower().Contains(term) ||
-                                            p.ContactEmail.ToLower().Contains(term) ||
-                                            p.Industry.ToLower().Contains(term)) &&
-                                           (string.IsNullOrEmpty(selectedIndustry) || p.Industry.ToLower() == selectedIndustry))
-                               .ToList();
+                                          .Where(p => (string.IsNullOrEmpty(term) ||
+                                                       p.Name.ToLower().Contains(term) ||
+                                                       p.ContactEmail.ToLower().Contains(term) ||
+                                                       p.Industry.ToLower().Contains(term)) &&
+                                                      (selectedIndustries == null || selectedIndustries.Length == 0 || selectedIndustries.Contains(p.Industry)) &&
+                                                      (selectedCities == null || selectedCities.Length == 0 || selectedCities.Contains(p.City)) &&
+                                                      (!minDate.HasValue || p.CreatedDate >= minDate) &&
+                                                      (!maxDate.HasValue || p.CreatedDate <= maxDate))
+                                          .ToList();
 
             partners = sortOrder switch
             {
@@ -58,7 +80,7 @@ namespace Cornerstech.Web.Controllers
             return View(partners);
         }
 
-        // GET
+        // GET: Retrieves agreements associated with a specific partner and applies sorting and filtering
         public IActionResult GetAgreementsByPartner(int partnerId, string term = "", string sortOrder = "Name", string sortDirection = "asc", string selectedStatus = "")
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
@@ -69,6 +91,7 @@ namespace Cornerstech.Web.Controllers
             ViewBag.PartnerName = partner?.Name ?? "Bilinmeyen Partner";
             ViewBag.PartnerId = partner?.Id ?? 0;
 
+            // Fetches agreements linked to the selected partner
             var agreements = _agreementService.TGetList()
                                     .Include(a => a.AgreementPartners)
                                     .ThenInclude(ap => ap.Partner)
@@ -124,13 +147,11 @@ namespace Cornerstech.Web.Controllers
             }
 
             ViewBag.Industries = _partnerService.TGetList()
-                .Select(p => p.Industry)
-                .Distinct()
-                .Select(i => new SelectListItem
+                .Select(p => new SelectListItem
                 {
-                    Value = i.ToString(),
-                    Text = i.ToString()
-                }).ToList();
+                    Value = p.Industry,
+                    Text = p.Industry
+                }).Distinct().ToList();
 
             var viewModel = new PartnerDetailsViewModel
             {
@@ -193,9 +214,6 @@ namespace Cornerstech.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var selectedIndustry = _partnerService.TGetList()
-                            .FirstOrDefault(p => p.Id.ToString() == model.Industry);
-
                 var partner = new Partner()
                 {
                     Name = model.Name,
@@ -203,7 +221,7 @@ namespace Cornerstech.Web.Controllers
                     PhoneNumber = model.PhoneNumber,
                     CreatedDate = DateTime.Now,
                     City = model.City ?? "",
-                    Industry = selectedIndustry?.Name ?? ""
+                    Industry = model.Industry ?? ""
                 };
 
                 _partnerService.TInsert(partner);
@@ -212,11 +230,11 @@ namespace Cornerstech.Web.Controllers
             }
 
             ViewBag.Industries = _partnerService.TGetList()
-                                        .Select(p => new SelectListItem
-                                        {
-                                            Value = p.Id.ToString(),
-                                            Text = p.Name
-                                        }).ToList();
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Industry,
+                    Text = p.Industry
+                }).Distinct().ToList();
 
             return PartialView("Create", model);
         }

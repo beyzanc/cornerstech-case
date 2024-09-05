@@ -2,7 +2,6 @@
 using Cornerstech.DataAccessLayer.Repositories;
 using Cornerstech.EntityLayer.Entities;
 
-
 namespace Cornerstech.DataAccessLayer.EntityFramework
 {
     public class EFAgreementRiskDal : GenericRepository<AgreementRisk>, IAgreementRiskDal

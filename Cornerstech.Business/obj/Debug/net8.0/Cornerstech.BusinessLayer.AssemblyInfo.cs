@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cornerstech.BusinessLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe8c5a9bc46d0b1c9768816787152fe88b03bfff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65d3b9f56b2a51d67dfa5c062ad51d0107219ecf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cornerstech.BusinessLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cornerstech.BusinessLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

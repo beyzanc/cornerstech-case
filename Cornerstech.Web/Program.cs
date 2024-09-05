@@ -14,14 +14,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); // Configures the application to use SQL Server as the database and pulls the connection string from appsettings.json
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.LoginPath = "/Home/Login"; 
         options.AccessDeniedPath = "/Account/AccessDenied";
-    });
+    }); // Sets up cookie-based authentication with custom login and access denied paths
+
+
+// Registers Unit of Work, services, and repositories for dependency injection to manage business logic and data access
 
 builder.Services.AddScoped<IUnitOfWorkDal, UnitOfWorkDal>();
 builder.Services.AddScoped<IAgreementService, AgreementManager>();

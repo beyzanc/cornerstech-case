@@ -24,23 +24,6 @@ namespace Cornerstech.BusinessLayer.Concrete
             _notificationApplicationUserDal = notificationApplicationUserDal;
         }
 
-        public List<NotificationApplicationUser> GetUserNotifications(int userId)
-        {
-            return _notificationApplicationUserDal.GetQueryableList().Where(u => u.ApplicationUserId.Equals(userId) && !u.IsRead)
-                                            .Include(n => n.Notification)
-                                            .ToList();
-        }
-
-        public void ReadNotification(int notificationId, int userId)
-        {
-            var notification = _notificationApplicationUserDal.GetQueryableList()
-                                        .FirstOrDefault(n => n.ApplicationUserId.Equals(userId)
-                                        && n.Id == notificationId);
-            notification.IsRead = true;
-            _notificationApplicationUserDal.Update(notification);
-            _uowDal.Save();
-        }
-
         public void TDelete(Notification t)
         {
             _notificationDal.Delete(t);

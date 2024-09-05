@@ -5,37 +5,91 @@
     ViewData["Title"] = "Anlaşmalar";
 }
 
+<h2>Anlaşmalar</h2><br />
+
 <form asp-action="Index" method="get">
     <div class="form-row">
         <div class="col-md-4 mb-2">
             <div class="input-group">
-                <input name="term" class="form-control" placeholder="Partner, anlaşma, risk, konu..." />
+                <input name="term" class="form-control" placeholder="Anlaşma, anlaşma detayı, partner, risk, konu..." />
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-info btn-sm">Ara</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mb-2">
-            <select class="form-control" name="selectedStatus" onchange="this.form.submit();">
-                <option value=""></option>
-                <option value="Tümü">Tümü</option>
-                <option value="Tamamlandı">Tamamlandı</option>
-                <option value="Görüşülüyor">Görüşülüyor</option>
-                <option value="İmzalandı">İmzalandı</option>
-                <option value="İptal Edildi">İptal Edildi</option>
-                <option value="Beklemede">Beklemede</option>
-            </select>
-        </div>
-        @if (User.IsInRole("Admin"))
-        {
-            <div class="col-md-2 offset-md-3 mb-2">
-                <a href="@Url.Action("Create", "Agreement")" class="btn float-right btn-sm" style="background-color: #008170; color: white;">Ekle</a>
-            </div>
-        }
 
+        <div class="col-md-5 offset-md-3 mb-2 text-right">
+            <div class="btn-group ml-auto">
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("Create", "Agreement")" class="btn btn-sm mr-2" style="background-color: #008170; color: white;">Anlaşma Ekle</a>
+                }
+                <button class="btn btn-secondary btn-sm mr-2" type="button" data-toggle="collapse" data-target="#filterSection" aria-expanded="false" aria-controls="filterSection">
+                    <i class="fas fa-plus"></i> Filtreler
+                </button>
+            </div>
+        </div>
     </div>
 </form>
 
+<div id="filterSection" class="collapse">
+    <form asp-action="Index" method="get">
+        <div class="form-row">
+            <div class="col-md-2 mb-2">
+                <label for="minDate">Eklendiği Tarih (En Erken)</label>
+                <input type="date" name="minDate" class="form-control" />
+                <label for="maxDate">Eklendiği Tarih (En Geç)</label>
+                <input type="date" name="maxDate" class="form-control" />
+            </div>
+
+            <div class="col-md-2 mb-2">
+                <label for="selectedStatus">Durum</label>
+                <select id="selectedStatus" name="selectedStatus" multiple="multiple" class="form-control">
+                    @foreach (var status in ViewBag.StatusOptions)
+                    {
+                        <option value="@status.Value">@status.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2 mb-2">
+                <label for="selectedPartners">Partner</label>
+                <select id="selectedPartners" name="selectedPartners" multiple="multiple" class="form-control">
+                    @foreach (var partner in ViewBag.PartnerOptions)
+                    {
+                        <option value="@partner.Value">@partner.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label for="selectedRisks">Risk</label>
+                <select id="selectedRisks" name="selectedRisks" multiple="multiple" class="form-control">
+                    @foreach (var risk in ViewBag.RiskOptions)
+                    {
+                        <option value="@risk.Value">@risk.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label for="selectedSubjects">Anahtar Konu</label>
+                <select id="selectedSubjects" name="selectedSubjects" multiple="multiple" class="form-control">
+                    @foreach (var subject in ViewBag.SubjectOptions)
+                    {
+                        <option value="@subject.Value">@subject.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <button type="submit" class="btn btn-primary btn-sm">Filtrele</button>
+            </div>
+        </div>
+    </form>
+</div>
 <br />
 
 <div class="table-responsive">
@@ -123,7 +177,6 @@
                     <td>@(!string.IsNullOrEmpty(item.Agreement.Status) ? item.Agreement.Status : "-")</td>
                     <td>
                         @if (item.Risks != null && item.Risks.Count > 1)
-
                         {
                             @foreach (var risk in item.Risks)
                             {
@@ -131,22 +184,17 @@
                                 <br />
                             }
                         }
-
                         else if (item.Risks != null && item.Risks.Count == 1)
-
                         {
                             @(!string.IsNullOrEmpty(item.Risks[0]) ? item.Risks[0] : "-")
                         }
-
                         else
-
                         {
                             <span>-</span>
                         }
                     </td>
                     <td>
                         @if (item.Subjects != null && item.Subjects.Count > 1)
-
                         {
                             @foreach (var subject in item.Subjects)
                             {
@@ -154,15 +202,11 @@
                                 <br />
                             }
                         }
-
                         else if (item.Subjects != null && item.Subjects.Count == 1)
-
                         {
                             @(!string.IsNullOrEmpty(item.Subjects[0]) ? item.Subjects[0] : "-")
                         }
-
                         else
-
                         {
                             <span>-</span>
                         }
@@ -183,7 +227,41 @@
                 </tr>
             }
         </tbody>
-
-
     </table>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-multiselect@0.9.15/dist/css/bootstrap-multiselect.css">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-multiselect@0.9.15/dist/js/bootstrap-multiselect.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectedStatus').multiselect({
+            nonSelectedText: 'Hiçbiri seçilmedi',
+            nSelectedText: 'Seçildi',
+            allSelectedText: 'Tümü seçildi',
+            buttonWidth: '100%'
+        });
+
+        $('#selectedPartners').multiselect({
+            nonSelectedText: 'Hiçbiri seçilmedi',
+            nSelectedText: 'Seçildi',
+            allSelectedText: 'Tümü seçildi',
+            buttonWidth: '100%'
+        });
+
+            $('#selectedRisks').multiselect({
+            nonSelectedText: 'Hiçbiri seçilmedi',
+            nSelectedText: 'Seçildi',
+            allSelectedText: 'Tümü seçildi',
+            buttonWidth: '100%'
+        });
+
+             $('#selectedSubjects').multiselect({
+            nonSelectedText: 'Hiçbiri seçilmedi',
+            nSelectedText: 'Seçildi',
+            allSelectedText: 'Tümü seçildi',
+            buttonWidth: '100%'
+        });
+    });
+</script>
